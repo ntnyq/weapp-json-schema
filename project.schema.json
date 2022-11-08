@@ -1,0 +1,385 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://json.schemastore.org/weapp.json",
+  "title": "JSON schema for Wechat app project config",
+  "description": "Configuration Schema for Wechat app project config",
+  "definitions": {
+    "match-type": {
+      "type": "string",
+      "enum": [
+        "file",
+        "folder",
+        "suffix",
+        "prefix",
+        "glob",
+        "regexp"
+      ]
+    },
+    "array-of-match": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "类型",
+            "$ref": "#/definitions/match-type"
+          },
+          "value": {
+            "type": "string",
+            "description": "路径或取值",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "type",
+          "value"
+        ]
+      }
+    }
+  },
+  "properties": {
+    "miniprogramRoot": {
+      "type": "string",
+      "description": "小程序源码的目录（需为相对路径）"
+    },
+    "qcloudRoot": {
+      "type": "string",
+      "description": "腾讯云项目的目录（需为相对路径）"
+    },
+    "pluginRoot": {
+      "type": "string",
+      "description": "插件项目的目录（需为相对路径）"
+    },
+    "cloudbaseRoot": {
+      "type": "string",
+      "description": "云开发代码根目录（需为相对路径）"
+    },
+    "cloudfunctionRoot": {
+      "type": "string",
+      "description": "云函数代码根目录（需为相对路径）"
+    },
+    "cloudfunctionTemplateRoot": {
+      "type": "string",
+      "description": "云函数本地调试请求模板的根目录（需为相对路径）"
+    },
+    "cloudcontainerRoot": {
+      "type": "string",
+      "description": "云托管代码根目录（需为相对路径）"
+    },
+    "compileType": {
+      "type": "string",
+      "description": "编译类型",
+      "default": "miniprogram",
+      "enum": [
+        "miniprogram",
+        "plugin"
+      ]
+    },
+    "setting": {
+      "type": "object",
+      "description": "项目设置",
+      "properties": {
+        "es6": {
+          "type": "boolean",
+          "description": "是否启用 es6 转 es5",
+          "default": false
+        },
+        "enhance": {
+          "type": "boolean",
+          "description": "是否打开增强编译",
+          "default": false
+        },
+        "postcss": {
+          "type": "boolean",
+          "description": "上传代码时样式是否自动补全",
+          "default": false
+        },
+        "minified": {
+          "type": "boolean",
+          "description": "上传代码时是否自动压缩脚本文件",
+          "default": false
+        },
+        "minifyWXSS": {
+          "type": "boolean",
+          "description": "上传代码时是否自动压缩样式文件",
+          "default": false
+        },
+        "minifyWXML": {
+          "type": "boolean",
+          "description": "上传代码时是否自动压缩 WXML 文件",
+          "default": false
+        },
+        "uglifyFileName": {
+          "type": "boolean",
+          "description": "上传时进行代码保护",
+          "default": false
+        },
+        "ignoreUploadUnusedFiles": {
+          "type": "boolean",
+          "description": "上传时是否过滤无依赖文件",
+          "default": false
+        },
+        "autoAudits": {
+          "type": "boolean",
+          "description": "是否自动运行体验评分",
+          "default": false
+        },
+        "urlCheck": {
+          "type": "boolean",
+          "description": "是否检查安全域名和 TLS 版本",
+          "default": false
+        },
+        "compileHotReLoad": {
+          "type": "boolean",
+          "description": "是否开启文件保存后自动热重载"
+        },
+        "preloadBackgroundData": {
+          "type": "boolean",
+          "description": "小程序加载时是否数据预拉取"
+        },
+        "lazyloadPlaceholderEnable": {
+          "type": "boolean",
+          "description": "是否启用懒注入占位组件调试"
+        },
+        "useStaticServer": {
+          "type": "boolean",
+          "description": "是否开启静态资源服务器，需要和staticServerOptions配合使用"
+        },
+        "bigPackageSizeSupport": {
+          "type": "boolean",
+          "description": "预览及真机调试的时主包、分包体积上限调整为4M（小程序）、8M（小游戏）"
+        },
+        "babelSetting": {
+          "type": "object",
+          "description": "增强编译下 Babel 的配置项",
+          "properties": {
+            "outputPath": {
+              "type": "string",
+              "description": "Babel 辅助函数的输出目录",
+              "default": "@babel/runtime"
+            },
+            "ignore": {
+              "type": "array",
+              "description": "配置需要跳过 Babel 编译(包括代码压缩)处理的文件或目录",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "useCompilerPlugins": {
+          "description": "编译插件配置",
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "typescript",
+                  "less",
+                  "sass"
+                ]
+              },
+              "uniqueItems": true
+            },
+            {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            }
+          ]
+        },
+        "disableUseStrict": {
+          "type": "boolean",
+          "description": "将 JS 编译成 ES5 时，是否禁用严格模式"
+        },
+        "uploadWithSourceMap": {
+          "type": "boolean",
+          "description": "上传时是否带上 sourcemap",
+          "default": true
+        },
+        "localPlugins": {
+          "type": "boolean",
+          "description": "在小游戏插件项目中，是否启用 “以本地目录为插件资源来源” 特性"
+        },
+        "packNpmManually": {
+          "type": "boolean",
+          "description": "是否手动配置构建 npm 的路径"
+        },
+        "packNpmRelationList": {
+          "type": "array",
+          "description": "仅 packNpmManually 为 true 时生效，详细参考构建 npm 文档",
+          "markdownDescription": "仅 `packNpmManually` 为 `true` 时生效，详细参考构建 npm 文档",
+          "items": {
+            "type": "object",
+            "properties": {
+              "packageJsonPath": {
+                "type": "string",
+                "description": "node_modules 源对应的 package.json",
+                "minLength": 1
+              },
+              "miniprogramNpmDistDir": {
+                "type": "string",
+                "description": "node_modules 的构建结果目标位置",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "packageJsonPath",
+              "miniprogramNpmDistDir"
+            ]
+          }
+        },
+        "coverView": {
+          "type": "boolean",
+          "description": "是否使用工具渲染 CoverView"
+        },
+        "ignoreDevUnusedFiles": {
+          "type": "boolean",
+          "description": "预览、真机调试和本地模拟器等开发阶段是否过滤无依赖文件",
+          "default": true
+        },
+        "checkInvalidKey": {
+          "type": "boolean",
+          "description": "是否展示 JSON 文件校验错误信息"
+        },
+        "showShadowRootInWxmlPanel": {
+          "type": "boolean",
+          "description": "是否开启调试器 WXML 面板展示 shadow-root"
+        },
+        "useIsolateContext": {
+          "type": "boolean",
+          "description": "是否开启小程序独立域调试特性"
+        },
+        "useMultiFrameRuntime": {
+          "type": "boolean",
+          "description": "是否开启模拟器预先载入小程序的某些资源。此设定为 false 时会导致 useIsolateContext 失效"
+        },
+        "useApiHook": {
+          "type": "boolean",
+          "description": "是否启用 API Hook 功能"
+        },
+        "useApiHostProcess": {
+          "type": "boolean",
+          "description": "是否在额外的进程处理一些小程序 API"
+        },
+        "useLanDebug": {
+          "type": "boolean",
+          "description": "仅在小游戏有效，是否开启局域网调试服务器"
+        },
+        "enableEngineNative": {
+          "type": "boolean",
+          "description": "是否在游戏引擎项目中开启支持引用 node 原生模块的底层加速特性"
+        },
+        "showES6CompileOption": {
+          "type": "boolean",
+          "description": "是否在本地设置中展示传统的 ES6 转 ES5 开关（对应 es6），增强编译开关 （对应 enhance）"
+        }
+      }
+    },
+    "libVersion": {
+      "type": "string",
+      "description": "基础库版本",
+      "oneOf": [
+        {
+          "pattern": "^[0-9]+.[0-9]+.[0-9]+$"
+        },
+        {
+          "enum": [
+            "latest",
+            "trial",
+            "widelyUsed"
+          ]
+        }
+      ]
+    },
+    "appid": {
+      "type": "string",
+      "description": "项目的 appid"
+    },
+    "projectname": {
+      "type": "string",
+      "description": "项目名字"
+    },
+    "packOptions": {
+      "type": "object",
+      "description": "打包配置选项",
+      "properties": {
+        "include": {
+          "type": "array",
+          "description": "配置打包时需要强制带上的文件或者文件夹",
+          "$ref": "#/definitions/array-of-match"
+        },
+        "ignore": {
+          "type": "array",
+          "description": "配置打包时对符合指定规则的文件或文件夹进行忽略",
+          "$ref": "#/definitions/array-of-match"
+        }
+      }
+    },
+    "debugOptions": {
+      "type": "object",
+      "description": "调试配置选项",
+      "properties": {
+        "hidedInDevtools": {
+          "type": "array",
+          "description": "配置调试时于调试器 Sources 面板隐藏源代码的文件",
+          "$ref": "#/definitions/array-of-match"
+        }
+      }
+    },
+    "watchOptions": {
+      "type": "object",
+      "description": "文件监听配置设置",
+      "properties": {
+        "ignore": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "scripts": {
+      "type": "object",
+      "description": "自定义预处理",
+      "properties": {
+        "beforeCompile": {
+          "type": "string",
+          "description": "编译前预处理命令"
+        },
+        "beforePreview": {
+          "type": "string",
+          "description": "预览前预处理命令"
+        },
+        "beforeUpload": {
+          "type": "string",
+          "description": "上传前预处理命令"
+        }
+      }
+    },
+    "staticServerOptions": {
+      "type": "object",
+      "description": "在微信开发者工具里开启一个本地静态资源服务器，用于托管项目静态资源，仅在小游戏项目中有效",
+      "properties": {
+        "servePath": {
+          "type": "string",
+          "description": "指向项目路径下的某个目录作为静态资源路径",
+          "minLength": 1
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "项目描述"
+    }
+  },
+  "required": [
+    "appid",
+    "projectname",
+    "compileType"
+  ]
+}

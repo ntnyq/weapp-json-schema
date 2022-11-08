@@ -1,0 +1,21 @@
+{
+  "$schema": "../../project.schema.json",
+  "miniprogramRoot": "./dist",
+  "projectname": "starter-taro-vue",
+  "description": "starter-taro-vue",
+  "appid": "wx9d6b29dabbb43222",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "useCompilerPlugins": [
+      "less"
+    ]
+  },
+  "libVersion": "widelyUsed",
+  "compileType": "miniprogram",
+  "watchOptions": {
+    "ignore": []
+  }
+}

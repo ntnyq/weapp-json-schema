@@ -1,0 +1,38 @@
+{
+  "name": "weapp-json-schema",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.14.2",
+  "description": "JSON schema for weapp",
+  "keywords": [
+    "json-schema",
+    "jsonschema",
+    "weapp",
+    "miniprogram",
+    "wechat"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "release": "bumpp && npm publish"
+  },
+  "homepage": "https://github.com/ntnyq/weapp-json-schema#readme",
+  "bugs": {
+    "url": "https://github.com/ntnyq/weapp-json-schema/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "ntnyq",
+    "email": "ntnyq13@gmail.com"
+  },
+  "files": [
+    "*.schema.json"
+  ],
+  "repository": "ntnyq/weapp-json-schema",
+  "prettier": "@ntnyq/prettier-config",
+  "devDependencies": {
+    "@ntnyq/prettier-config": "^1.0.8",
+    "ajv": "^8.11.0",
+    "bumpp": "^8.2.1",
+    "prettier": "^2.7.1",
+    "vitest": "^0.25.0"
+  }
+}
