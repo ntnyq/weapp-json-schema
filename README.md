@@ -2,10 +2,21 @@
 
 [![CI](https://github.com/ntnyq/weapp-json-schema/workflows/CI/badge.svg)](https://github.com/ntnyq/weapp-json-schema/actions)
 [![NPM VERSION](https://img.shields.io/npm/v/weapp-json-schema.svg)](https://www.npmjs.com/package/weapp-json-schema)
-[![Coverage Status](https://coveralls.io/repos/github/ntnyq/weapp-json-schema/badge.svg?branch=main)](https://coveralls.io/github/ntnyq/weapp-json-schema?branch=main)
+[![NPM DOWNLOADS](https://img.shields.io/npm/dy/weapp-json-schema.svg)](https://www.npmjs.com/package/weapp-json-schema)
 [![LICENSE](https://img.shields.io/github/license/ntnyq/weapp-json-schema.svg)](https://github.com/ntnyq/weapp-json-schema/blob/main/LICENSE)
 
 > JSON schema for weapp.
+
+## Usage
+
+### Project config
+
+```jsonc
+// Add line bellow to your `project.config.json`
+{
+  "$schema": "https://jsonschema.ntnyq.com/project.schema.json"
+}
+```
 
 ## Schemas
 

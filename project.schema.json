@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "$id": "https://json.schemastore.org/weapp.json",
+  "$id": "https://jsonschema.ntnyq.com/project.schema.json",
   "title": "JSON schema for Wechat app project config",
   "description": "Configuration Schema for Wechat app project config",
   "definitions": {
