@@ -1,0 +1,453 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://jsonschema.ntnyq.com/app.schema.json",
+  "title": "JSON schema for Wechat app app config",
+  "description": "Configuration Schema for Wechat app app config",
+  "definitions": {
+    "mime-type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+        "video/*",
+        "audio/*",
+        "image/*",
+        "text/html",
+        "text/plain",
+        "application/*",
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-word.document.macroEnabled.12",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-excel.sheet.macroEnabled.12",
+        "application/vnd.ms-powerpoint",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "application/zip",
+        "application/vnd.rar",
+        "application/x-7z-compressed",
+        "application/x-photoshop",
+        "application/acad",
+        "application/x-cdr",
+        "application/dxf",
+        "application/step",
+        "application/rtf",
+        "application/postscript"
+      ]
+    },
+    "material": {
+      "type": "object",
+      "properties": {
+        "materialType": {
+          "type": "string",
+          "description": "支持文件类型的MimeType，音频，视频支持二级配置的通配模式，例如: video/*。通配模式配置和精确类型配置同时存在时，则优先使用精确类型的配置(例如video/*和video/mp4同时存在，会优先使用video/mp4的配置)。",
+          "$ref": "#/definitions/mime-type"
+        },
+        "name": {
+          "type": "string",
+          "description": "开发者配置的标题，在素材页面会展示该标题，配置中必须包含${nickname}, 代码包编译后会自动替换为小程序名称，如果声明了简称则会优先使用简称。除去${nickname}其余字数不得超过6个。",
+          "pattern": "(?=[$][{]nickname[}])",
+          "minLength": 12,
+          "maxLength": 17
+        },
+        "desc": {
+          "type": "string",
+          "description": "用途描述，会在推荐列表展示该描述，限定字数不超过22个。",
+          "minLength": 1,
+          "maxLength": 22
+        },
+        "path": {
+          "type": "string",
+          "description": "在该场景下打开小程序时跳转页面"
+        }
+      },
+      "required": [
+        "materialType",
+        "name",
+        "desc",
+        "path"
+      ]
+    },
+    "permission": {
+      "type": "object",
+      "properties": {
+        "desc": {
+          "type": "string",
+          "description": "小程序获取权限时展示的接口用途说明。最长 30 个字符",
+          "minLength": 1,
+          "maxLength": 30
+        }
+      },
+      "required": [
+        "desc"
+      ]
+    }
+  },
+  "properties": {
+    "entryPagePath": {
+      "type": "string",
+      "description": "小程序默认启动首页，默认为 pages 列表的第一项，不支持携带参数"
+    },
+    "pages": {
+      "type": "array",
+      "description": "页面路径列表",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "window": {
+      "type": "object",
+      "description": "全局的默认窗口表现"
+    },
+    "tabbar": {
+      "type": "object",
+      "description": "底部 tab 栏的表现"
+    },
+    "networkTimeout": {
+      "type": "object",
+      "description": "网络超时时间",
+      "properties": {
+        "request": {
+          "type": "number",
+          "description": "wx.request 的超时时间，单位：毫秒",
+          "default": 60000
+        },
+        "connectSocket": {
+          "type": "number",
+          "description": "wx.connectSocket 的超时时间，单位：毫秒",
+          "default": 60000
+        },
+        "uploadFile": {
+          "type": "number",
+          "description": "wx.uploadFile 的超时时间，单位：毫秒",
+          "default": 60000
+        },
+        "downloadFile": {
+          "type": "number",
+          "description": "wx.downloadFile 的超时时间，单位：毫秒",
+          "default": 60000
+        }
+      }
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "是否开启 debug 模式，默认关闭",
+      "default": false
+    },
+    "functionalPages": {
+      "type": "boolean",
+      "description": "是否启用插件功能页，默认关闭",
+      "default": false
+    },
+    "subpackages": {
+      "type": "array",
+      "description": "分包结构配置"
+    },
+    "subPackages": {
+      "type": "array",
+      "description": "分包结构配置"
+    },
+    "workers": {
+      "type": "string",
+      "description": "Worker 代码放置的目录"
+    },
+    "requiredBackgroundModes": {
+      "type": "array",
+      "description": "需要在后台使用的能力，如「音乐播放」",
+      "items": {
+        "type": "string",
+        "enum": [
+          "audio",
+          "location"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "requiredPrivateInfos": {
+      "type": "array",
+      "description": "调用的地理位置相关隐私接口",
+      "items": {
+        "type": "string",
+        "enum": [
+          "getFuzzyLocation",
+          "getLocation",
+          "onLocationChange",
+          "startLocationUpdate",
+          "startLocationUpdateBackground",
+          "chooseLocation",
+          "choosePoi",
+          "chooseAddress"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "plugins": {
+      "type": "object",
+      "description": "声明小程序需要使用的插件",
+      "default": {},
+      "patternProperties": {
+        "^.+$": {
+          "type": "object",
+          "description": "插件名称",
+          "default": {
+            "version": "",
+            "provider": ""
+          },
+          "properties": {
+            "version": {
+              "type": "string",
+              "description": "插件版本号",
+              "pattern": "^[0-9]+.[0-9]+.[0-9]+$"
+            },
+            "provider": {
+              "type": "string",
+              "description": "插件 appId"
+            }
+          },
+          "required": [
+            "version",
+            "provider"
+          ]
+        }
+      }
+    },
+    "preloadRule": {
+      "type": "object",
+      "description": "分包预下载规则"
+    },
+    "resizable": {
+      "type": "boolean",
+      "description": "PC 小程序是否支持用户任意改变窗口大小（包括最大化窗口）；iPad 小程序是否支持屏幕旋转。默认关闭",
+      "default": false
+    },
+    "usingComponents": {
+      "type": "object",
+      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。"
+    },
+    "permission": {
+      "type": "object",
+      "description": "小程序接口权限相关设置",
+      "properties": {
+        "scope.userLocation": {
+          "description": "精确地理位置",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.userFuzzyLocation": {
+          "description": "模糊地理位置",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.userLocationBackground": {
+          "description": "后台定位",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.record": {
+          "description": "麦克风",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.camera": {
+          "description": "摄像头",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.bluetooth": {
+          "description": "蓝牙",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.writePhotosAlbum": {
+          "description": "添加到相册",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.addPhoneContact": {
+          "description": "添加到联系人",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.addPhoneCalendar": {
+          "description": "添加到日历",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.werun": {
+          "description": "微信运动步数",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.address": {
+          "description": "通讯地址（已取消授权，可以直接调用对应接口）",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.invoiceTitle": {
+          "description": "发票抬头（已取消授权，可以直接调用对应接口）",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.invoice": {
+          "description": "获取发票（已取消授权，可以直接调用对应接口）",
+          "$ref": "#/definitions/permission"
+        },
+        "scope.userInfo": {
+          "description": "用户信息（小程序已回收，请使用头像昵称填写，小游戏可继续调用）",
+          "$ref": "#/definitions/permission"
+        }
+      }
+    },
+    "sitemapLocation": {
+      "type": "string",
+      "description": "指明 sitemap.json 的位置",
+      "default": "sitemap.json"
+    },
+    "style": {
+      "type": "string",
+      "description": "指定使用升级后的 weui 样式, v2 表示启用新版的组件样式",
+      "enum": [
+        "v2"
+      ]
+    },
+    "useExtendedLib": {
+      "type": "object",
+      "description": "指定需要引用的扩展库",
+      "properties": {
+        "kbone": {
+          "type": "boolean",
+          "description": "使用多端开发框架"
+        },
+        "weui": {
+          "type": "boolean",
+          "description": "使用 WeUI 组件库"
+        }
+      }
+    },
+    "entranceDeclare": {
+      "type": "object",
+      "description": "微信消息用小程序打开"
+    },
+    "darkmode": {
+      "type": "boolean",
+      "description": "声明小程序支持 DarkMode",
+      "default": false
+    },
+    "themeLocation": {
+      "type": "string",
+      "description": "指明 theme.json 的位置，darkmode为 true 为必填"
+    },
+    "lazyCodeLoading": {
+      "type": "string",
+      "description": "配置自定义组件代码按需注入",
+      "enum": [
+        "requiredComponents"
+      ]
+    },
+    "singlePage": {
+      "type": "object",
+      "description": "单页模式相关配置",
+      "properties": {
+        "navigationBarFit": {
+          "type": "string",
+          "description": "导航栏与页面的相交状态，值为 float 时表示导航栏浮在页面上，与页面相交；值为 squeezed 时表示页面被导航栏挤压，与页面不相交。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
+          "enum": [
+            "float",
+            "squeezed"
+          ]
+        }
+      }
+    },
+    "supportedMaterials": {
+      "type": "array",
+      "description": "聊天素材小程序打开相关配置",
+      "items": {
+        "type": "object",
+        "description": "声明支持打开的文件类型，对一种文件类型只能声明一种处理方式",
+        "$ref": "#/definitions/material"
+      }
+    },
+    "serviceProviderTicket": {
+      "type": "string",
+      "description": "定制化型服务商票据"
+    },
+    "embeddedAppIdList": {
+      "type": "array",
+      "description": "半屏小程序 appId",
+      "items": {
+        "type": "string",
+        "description": "微信小程序 appId"
+      },
+      "uniqueItems": true
+    },
+    "halfPage": {
+      "type": "object",
+      "description": "视频号直播半屏场景设置",
+      "properties": {
+        "firstPageNavigationStyle": {
+          "type": "string",
+          "description": "视频号直播打开的第一个页面的全屏状态使用自定义顶部",
+          "enum": [
+            "default",
+            "custom"
+          ]
+        }
+      }
+    },
+    "debugOptions": {
+      "type": "object",
+      "description": "调试相关配置",
+      "properties": {
+        "enableFPSPanel": {
+          "type": "boolean",
+          "description": "是否开启 FPS 面板",
+          "default": false
+        }
+      }
+    },
+    "enablePassiveEvent": {
+      "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
+      "default": false,
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "touchstart": {
+              "type": "boolean",
+              "description": "是否设置 touchstart 事件为 passive",
+              "default": false
+            },
+            "touchmove": {
+              "type": "boolean",
+              "description": "是否设置 touchmove 事件为 passive",
+              "default": false
+            },
+            "wheel": {
+              "type": "boolean",
+              "description": "是否设置 wheel 事件为 passive",
+              "default": false
+            }
+          }
+        }
+      ]
+    },
+    "resolveAlias": {
+      "type": "object",
+      "description": "自定义模块映射规则",
+      "patternProperties": {
+        "^.{1,}\/\\*": {
+          "type": "string",
+          "description": "resolveAlias 进行的是路径匹配，其中的 key 和 value 须以 /* 结尾",
+          "pattern": "^.{1,}\/\\*$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "renderer": {
+      "type": "string",
+      "description": "指定小程序全局的默认渲染后端",
+      "default": "webview",
+      "enum": [
+        "webview",
+        "skyline"
+      ]
+    }
+  },
+  "required": [
+    "pages"
+  ]
+}

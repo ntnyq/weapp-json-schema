@@ -18,10 +18,21 @@
 }
 ```
 
+### App config
+
+```jsonc
+// Add line bellow to your `app.json`
+{
+  "$schema": "https://jsonschema.ntnyq.com/app.schema.json"
+}
+```
+
 ## Schemas
 
 - [project.schema.json](./project.schema.json) Schema for `project.config.json`
+- [app.schema.json](./app.schema.json) Schema for `app.json`
 
 ## Refs
 
 - [微信官方文档 - 项目配置文件](https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html)
+- [微信官方文档 - 全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)

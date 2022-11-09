@@ -1,0 +1,30 @@
+{
+  "$schema": "../../app.schema.json",
+  "pages": [
+    "pages/home/index"
+  ],
+  "window": {},
+  "lazyCodeLoading": "requiredComponents",
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
+  "supportedMaterials": [
+    {
+      "materialType": "audio/*",
+      "desc": "1234567890123456789012",
+      "name": "1${nickname}22222",
+      "path": "asdsds"
+    }
+  ],
+  "plugins": {
+    "hello": {
+      "version": "1.2.3",
+      "provider": "ssdsadasdasd"
+    }
+  },
+  "permission": {},
+  "resolveAlias": {},
+  "resizable": false,
+  "darkmode": false
+}
