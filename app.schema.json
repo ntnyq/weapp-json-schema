@@ -82,6 +82,40 @@
       "required": [
         "desc"
       ]
+    },
+    "sub-package": {
+      "type": "object",
+      "properties": {
+        "root": {
+          "type": "string",
+          "description": "分包根目录"
+        },
+        "name": {
+          "type": "string",
+          "description": "分包别名，分包预下载时可以使用"
+        },
+        "pages": {
+          "type": "array",
+          "description": "分包页面路径，相对于分包根目录",
+          "items": {
+            "type": "string",
+            "description": "页面路径"
+          },
+          "minItems": 1
+        },
+        "independent": {
+          "type": "boolean",
+          "description": "分包是否是独立分包",
+          "default": false
+        }
+      },
+      "required": [
+        "pages"
+      ]
+    },
+    "hex-color": {
+      "type": "string",
+      "pattern": "#[0-9a-f]{6}"
     }
   },
   "properties": {
@@ -93,18 +127,201 @@
       "type": "array",
       "description": "页面路径列表",
       "items": {
-        "type": "string"
+        "type": "string",
+        "description": "页面路径"
       },
       "minItems": 1,
       "uniqueItems": true
     },
     "window": {
       "type": "object",
-      "description": "全局的默认窗口表现"
+      "description": "全局的默认窗口表现",
+      "properties": {
+        "navigationBarBackgroundColor": {
+          "type": "string",
+          "description": "导航栏背景颜色，如 #000000",
+          "default": "#000000",
+          "$ref": "#/definitions/hex-color"
+        },
+        "navigationBarTextStyle": {
+          "type": "string",
+          "description": "导航栏标题颜色，仅支持 black / white",
+          "default": "white",
+          "enum": [
+            "white",
+            "black"
+          ]
+        },
+        "navigationBarTitleText": {
+          "type": "string",
+          "description": "导航栏标题文字内容"
+        },
+        "navigationStyle": {
+          "type": "string",
+          "description": "导航栏样式，仅支持以下值：default: 默认样式；custom：自定义导航栏，只保留右上角胶囊按钮",
+          "default": "default",
+          "enum": [
+            "default",
+            "custom"
+          ]
+        },
+        "homeButton": {
+          "type": "boolean",
+          "description": "在非首页、非页面栈最底层页面或非 tabbar 内页面中的导航栏展示 home 键",
+          "default": true
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "窗口的背景色",
+          "default": "#ffffff",
+          "$ref": "#/definitions/hex-color"
+        },
+        "backgroundTextStyle": {
+          "type": "string",
+          "description": "下拉 loading 的样式，仅支持 dark / light",
+          "default": "dark",
+          "enum": [
+            "dark",
+            "light"
+          ]
+        },
+        "backgroundColorTop": {
+          "type": "string",
+          "description": "顶部窗口的背景色，仅 iOS 支持",
+          "default": "#ffffff",
+          "$ref": "#/definitions/hex-color"
+        },
+        "backgroundColorBottom": {
+          "type": "string",
+          "description": "底部窗口的背景色，仅 iOS 支持",
+          "default": "#ffffff",
+          "$ref": "#/definitions/hex-color"
+        },
+        "enablePullDownRefresh": {
+          "type": "boolean",
+          "description": "是否开启全局的下拉刷新。",
+          "default": false
+        },
+        "onReachBottomDistance": {
+          "type": "number",
+          "description": "页面上拉触底事件触发时距页面底部距离，单位为 px。",
+          "default": 50
+        },
+        "pageOrientation": {
+          "type": "string",
+          "description": "屏幕旋转设置，支持 auto / portrait / landscape",
+          "default": "portrait"
+        },
+        "restartStrategy": {
+          "type": "string",
+          "description": "重新启动策略配置。homePage：如果从这个页面退出小程序，下次将从首页冷启动；homePageAndLatestPage：如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）",
+          "default": "homePage",
+          "enum": [
+            "homePage",
+            "homePageAndLatestPage"
+          ]
+        },
+        "initialRenderingCache": {
+          "type": "string",
+          "description": "页面初始渲染缓存配置，支持 static / dynamic",
+          "enum": [
+            "static",
+            "dynamic"
+          ]
+        },
+        "visualEffectInBackground": {
+          "type": "string",
+          "description": "切入系统后台时，隐藏页面内容，保护用户隐私。支持 hidden / none",
+          "default": "none"
+        },
+        "handleWebviewPreload": {
+          "type": "string",
+          "description": "控制预加载下个页面的时机。支持 static / manual / auto",
+          "default": "static"
+        }
+      }
     },
     "tabbar": {
       "type": "object",
-      "description": "底部 tab 栏的表现"
+      "description": "底部 tab 栏的表现",
+      "properties": {
+        "color": {
+          "type": "string",
+          "description": "tab 上的文字默认颜色，仅支持十六进制颜色",
+          "$ref": "#/definitions/hex-color"
+        },
+        "selectedColor": {
+          "type": "string",
+          "description": "tab 上的文字选中时的颜色，仅支持十六进制颜色",
+          "$ref": "#/definitions/hex-color"
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "tab 的背景色，仅支持十六进制颜色",
+          "$ref": "#/definitions/hex-color"
+        },
+        "borderStyle": {
+          "type": "string",
+          "description": "tabbar 上边框的颜色， 仅支持 black / white",
+          "default": "black",
+          "enum": [
+            "black",
+            "white"
+          ]
+        },
+        "list": {
+          "type": "array",
+          "description": "tab 的列表，详见 list 属性说明，最少 2 个、最多 5 个 tab",
+          "items": {
+            "type": "object",
+            "description": "tab 配置",
+            "properties": {
+              "pagePath": {
+                "type": "string",
+                "description": "页面路径，必须在 pages 中先定义"
+              },
+              "text": {
+                "type": "string",
+                "description": "tab 上按钮文字"
+              },
+              "iconPath": {
+                "type": "string",
+                "description": "图片路径，icon 大小限制为 40kb，建议尺寸为 81px * 81px，不支持网络图片。当 position 为 top 时，不显示 icon。"
+              },
+              "selectedIconPath": {
+                "type": "string",
+                "description": "选中时的图片路径，icon 大小限制为 40kb，建议尺寸为 81px * 81px，不支持网络图片。当 position 为 top 时，不显示 icon。"
+              }
+            },
+            "required": [
+              "pagePath",
+              "text"
+            ]
+          },
+          "minItems": 2,
+          "maxItems": 5
+        },
+        "position": {
+          "type": "string",
+          "description": "tabBar 的位置，仅支持 bottom / top",
+          "default": "bottom",
+          "enum": [
+            "bottom",
+            "top"
+          ]
+        },
+        "custom": {
+          "type": "boolean",
+          "description": "自定义 tabBar",
+          "default": false
+        }
+      },
+      "required": [
+        "color",
+        "selectedColor",
+        "backgroundColor",
+        "list"
+      ]
     },
     "networkTimeout": {
       "type": "object",
@@ -144,11 +361,19 @@
     },
     "subpackages": {
       "type": "array",
-      "description": "分包结构配置"
+      "description": "分包结构配置",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/sub-package"
+      }
     },
     "subPackages": {
       "type": "array",
-      "description": "分包结构配置"
+      "description": "分包结构配置",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/sub-package"
+      }
     },
     "workers": {
       "type": "string",
@@ -216,7 +441,37 @@
     },
     "preloadRule": {
       "type": "object",
-      "description": "分包预下载规则"
+      "description": "分包预下载规则",
+      "patternProperties": {
+        "^.+$": {
+          "type": "object",
+          "description": "页面路径",
+          "default": {
+            "packages": []
+          },
+          "properties": {
+            "packages": {
+              "type": "array",
+              "description": "进入页面后预下载分包的 root 或 name。__APP__ 表示主包。",
+              "items": {
+                "type": "string"
+              }
+            },
+            "network": {
+              "type": "string",
+              "description": "在指定网络下预下载，可选值为：all: 不限网络 wifi: 仅 wifi 下预下载",
+              "default": "wifi",
+              "enum": [
+                "all",
+                "wifi"
+              ]
+            }
+          },
+          "required": [
+            "packages"
+          ]
+        }
+      }
     },
     "resizable": {
       "type": "boolean",
@@ -225,7 +480,15 @@
     },
     "usingComponents": {
       "type": "object",
-      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。"
+      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
+      "patternProperties": {
+        "^[a-z-_]+$": {
+          "type": "string",
+          "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
+          "pattern": "^(?!wx-).+"
+        }
+      },
+      "additionalProperties": false
     },
     "permission": {
       "type": "object",
@@ -317,7 +580,23 @@
     },
     "entranceDeclare": {
       "type": "object",
-      "description": "微信消息用小程序打开"
+      "description": "微信消息用小程序打开",
+      "properties": {
+        "locationMessage": {
+          "type": "object",
+          "description": "声明“位置消息”场景进入小程序的启动页面",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "启动页路径，必须是在 pages 中已经定义"
+            },
+            "query": {
+              "type": "string",
+              "description": "启动页参数"
+            }
+          }
+        }
+      }
     },
     "darkmode": {
       "type": "boolean",

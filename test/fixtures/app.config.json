@@ -9,14 +9,24 @@
     "audio",
     "location"
   ],
+  "usingComponents": {
+    "hello_world": "w1-xx/hello/world"
+  },
   "supportedMaterials": [
     {
       "materialType": "audio/*",
       "desc": "1234567890123456789012",
-      "name": "1${nickname}22222",
+      "name": "foo${nickname}bar",
       "path": "asdsds"
     }
   ],
+  "preloadRule": {
+    "hello": {
+      "packages": [
+        "hello"
+      ]
+    }
+  },
   "plugins": {
     "hello": {
       "version": "1.2.3",
