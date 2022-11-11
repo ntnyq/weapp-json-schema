@@ -2,8 +2,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "$id": "https://jsonschema.ntnyq.com/app.schema.json",
-  "title": "JSON schema for Wechat app app config",
-  "description": "Configuration Schema for Wechat app app config",
+  "title": "JSON schema for weapp app config",
+  "description": "Configuration Schema for weapp app config",
   "definitions": {
     "mime-type": {
       "type": "string",

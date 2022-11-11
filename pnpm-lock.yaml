@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@ntnyq/prettier-config': ^1.0.8
+  '@types/node': ^18.11.9
   ajv: ^8.11.0
   bumpp: ^8.2.1
   prettier: ^2.7.1
@@ -9,6 +10,7 @@ specifiers:
 
 devDependencies:
   '@ntnyq/prettier-config': 1.0.8
+  '@types/node': 18.11.9
   ajv: 8.11.0
   bumpp: 8.2.1
   prettier: 2.7.1

@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://jsonschema.ntnyq.com/page.schema.json",
+  "title": "JSON schema for weapp page config",
+  "description": "Configuration Schema for weapp page config",
+  "definitions": {
+    "hex-color": {
+      "type": "string",
+      "pattern": "#[0-9a-f]{6}"
+    }
+  },
+  "properties": {
+    "navigationBarBackgroundColor": {
+      "type": "string",
+      "description": "导航栏背景颜色，如 #000000",
+      "default": "#000000",
+      "$ref": "#/definitions/hex-color"
+    },
+    "navigationBarTextStyle": {
+      "type": "string",
+      "description": "导航栏标题颜色，仅支持 black / white",
+      "default": "white",
+      "enum": [
+        "white",
+        "black"
+      ]
+    },
+    "navigationBarTitleText": {
+      "type": "string",
+      "description": "导航栏标题文字内容"
+    },
+    "navigationStyle": {
+      "type": "string",
+      "description": "导航栏样式，仅支持以下值：default: 默认样式；custom：自定义导航栏，只保留右上角胶囊按钮",
+      "default": "default",
+      "enum": [
+        "default",
+        "custom"
+      ]
+    },
+    "homeButton": {
+      "type": "boolean",
+      "description": "在非首页、非页面栈最底层页面或非 tabbar 内页面中的导航栏展示 home 键",
+      "default": true
+    },
+    "backgroundColor": {
+      "type": "string",
+      "description": "窗口的背景色",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "backgroundTextStyle": {
+      "type": "string",
+      "description": "下拉 loading 的样式，仅支持 dark / light",
+      "default": "dark",
+      "enum": [
+        "dark",
+        "light"
+      ]
+    },
+    "backgroundColorTop": {
+      "type": "string",
+      "description": "顶部窗口的背景色，仅 iOS 支持",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "backgroundColorBottom": {
+      "type": "string",
+      "description": "底部窗口的背景色，仅 iOS 支持",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "enablePullDownRefresh": {
+      "type": "boolean",
+      "description": "是否开启全局的下拉刷新。",
+      "default": false
+    },
+    "onReachBottomDistance": {
+      "type": "number",
+      "description": "页面上拉触底事件触发时距页面底部距离，单位为 px。",
+      "default": 50
+    },
+    "pageOrientation": {
+      "type": "string",
+      "description": "屏幕旋转设置，支持 auto / portrait / landscape",
+      "default": "portrait"
+    },
+    "disableScroll": {
+      "type": "boolean",
+      "description": "设置为 true 则页面整体不能上下滚动。",
+      "default": false
+    },
+    "restartStrategy": {
+      "type": "string",
+      "description": "重新启动策略配置。homePage：如果从这个页面退出小程序，下次将从首页冷启动；homePageAndLatestPage：如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）",
+      "default": "homePage",
+      "enum": [
+        "homePage",
+        "homePageAndLatestPage"
+      ]
+    },
+    "initialRenderingCache": {
+      "type": "string",
+      "description": "页面初始渲染缓存配置，支持 static / dynamic",
+      "enum": [
+        "static",
+        "dynamic"
+      ]
+    },
+    "visualEffectInBackground": {
+      "type": "string",
+      "description": "切入系统后台时，隐藏页面内容，保护用户隐私。支持 hidden / none",
+      "default": "none"
+    },
+    "handleWebviewPreload": {
+      "type": "string",
+      "description": "控制预加载下个页面的时机。支持 static / manual / auto",
+      "default": "static"
+    },
+    "usingComponents": {
+      "type": "object",
+      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
+      "patternProperties": {
+        "^[a-z-_]+$": {
+          "type": "string",
+          "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
+          "pattern": "^(?!wx-).+"
+        }
+      },
+      "additionalProperties": false
+    },
+    "style": {
+      "type": "string",
+      "description": "指定使用升级后的 weui 样式, v2 表示启用新版的组件样式",
+      "enum": [
+        "v2"
+      ]
+    },
+    "singlePage": {
+      "type": "object",
+      "description": "单页模式相关配置",
+      "properties": {
+        "navigationBarFit": {
+          "type": "string",
+          "description": "导航栏与页面的相交状态，值为 float 时表示导航栏浮在页面上，与页面相交；值为 squeezed 时表示页面被导航栏挤压，与页面不相交。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
+          "enum": [
+            "float",
+            "squeezed"
+          ]
+        }
+      }
+    },
+    "enablePassiveEvent": {
+      "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
+      "default": false,
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "touchstart": {
+              "type": "boolean",
+              "description": "是否设置 touchstart 事件为 passive",
+              "default": false
+            },
+            "touchmove": {
+              "type": "boolean",
+              "description": "是否设置 touchmove 事件为 passive",
+              "default": false
+            },
+            "wheel": {
+              "type": "boolean",
+              "description": "是否设置 wheel 事件为 passive",
+              "default": false
+            }
+          }
+        }
+      ]
+    },
+    "renderer": {
+      "type": "string",
+      "description": "指定小程序全局的默认渲染后端",
+      "default": "webview",
+      "enum": [
+        "webview",
+        "skyline"
+      ]
+    }
+  }
+}

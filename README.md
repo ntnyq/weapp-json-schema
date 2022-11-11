@@ -27,10 +27,20 @@
 }
 ```
 
+### Page config
+
+```jsonc
+// Add line bellow to your `<page_name>.json`
+{
+  "$schema": "https://jsonschema.ntnyq.com/page.schema.json"
+}
+```
+
 ## Schemas
 
 - [project.schema.json](./project.schema.json) Schema for `project.config.json`
 - [app.schema.json](./app.schema.json) Schema for `app.json`
+- [page.schema.json](./page.schema.json) Schema for `<page_name>.json`
 
 ## Refs
 
