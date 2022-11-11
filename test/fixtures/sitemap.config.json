@@ -1,0 +1,20 @@
+{
+  "$schema": "../../sitemap.schema.json",
+  "rules": [
+    {
+      "page": "pages/home/index",
+      "action": "allow",
+      "matching": "inclusive",
+      "params": [],
+      "priority": 0
+    },
+    {
+      "page": "pages/home/index",
+      "action": "allow",
+      "matching": "inclusive"
+    },
+    {
+      "page": "pages/home/index"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "$id": "https://jsonschema.ntnyq.com/sitemap.schema.json",
+  "title": "JSON schema for weapp sitemap config",
+  "description": "Configuration Schema for weapp sitemap config",
+  "definitions": {
+    "rule": {
+      "type": "object",
+      "description": "sitemap 索引规则",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "命中该规则的页面是否能被索引",
+          "default": "allow",
+          "enum": [
+            "allow",
+            "disallow"
+          ]
+        },
+        "page": {
+          "type": "string",
+          "description": "* 或页面的路径，* 表示所有页面，不能作为通配符使用"
+        },
+        "params": {
+          "type": "array",
+          "description": "当 page 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "matching": {
+          "type": "string",
+          "description": "当 page 字段指定的页面在被本规则匹配时，此参数说明 params 匹配方式",
+          "default": "inclusive",
+          "examples": [
+            "inclusive"
+          ],
+          "enum": [
+            "exact",
+            "inclusive",
+            "exclusive",
+            "partial"
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "description": "优先级，值越大则规则越早被匹配，否则默认从上到下匹配"
+        }
+      },
+      "required": [
+        "page"
+      ]
+    }
+  },
+  "properties": {
+    "rules": {
+      "type": "array",
+      "description": "sitemap 索引规则列表",
+      "items": {
+        "type": "object",
+        "description": "sitemap 索引规则",
+        "$ref": "#/definitions/rule"
+      }
+    }
+  },
+  "required": [
+    "rules"
+  ]
+}

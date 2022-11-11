@@ -36,13 +36,25 @@
 }
 ```
 
+### Sitemap config
+
+```jsonc
+// Add line bellow to your `sitemap.json`
+{
+  "$schema": "https://jsonschema.ntnyq.com/sitemap.schema.json"
+}
+```
+
 ## Schemas
 
 - [project.schema.json](./project.schema.json) Schema for `project.config.json`
 - [app.schema.json](./app.schema.json) Schema for `app.json`
 - [page.schema.json](./page.schema.json) Schema for `<page_name>.json`
+- [sitemap.schema.json](./sitemap.schema.json) Schema for `sitemap.json`
 
 ## Refs
 
 - [微信官方文档 - 项目配置文件](https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html)
 - [微信官方文档 - 全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
+- [微信官方文档 - 页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
+- [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html)
