@@ -12,8 +12,8 @@
 ### Project config
 
 ```jsonc
-// Add line bellow to your `project.config.json`
 {
+  // Add line bellow to your `project.config.json`
   "$schema": "https://jsonschema.ntnyq.com/project.schema.json"
 }
 ```
@@ -21,8 +21,8 @@
 ### App config
 
 ```jsonc
-// Add line bellow to your `app.json`
 {
+  // Add line bellow to your `app.json`
   "$schema": "https://jsonschema.ntnyq.com/app.schema.json"
 }
 ```
@@ -30,8 +30,8 @@
 ### Page config
 
 ```jsonc
-// Add line bellow to your `<page_name>.json`
 {
+  // Add line bellow to your `<page_name>.json`
   "$schema": "https://jsonschema.ntnyq.com/page.schema.json"
 }
 ```
@@ -39,8 +39,8 @@
 ### Sitemap config
 
 ```jsonc
-// Add line bellow to your `sitemap.json`
 {
+  // Add line bellow to your `sitemap.json`
   "$schema": "https://jsonschema.ntnyq.com/sitemap.schema.json"
 }
 ```
@@ -58,3 +58,7 @@
 - [微信官方文档 - 全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
 - [微信官方文档 - 页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
 - [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html)
+
+## License
+
+[MIT](./LICENSE) License © 2022-PRESENT [ntnyq](https://github.com/ntnyq)
