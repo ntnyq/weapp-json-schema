@@ -9,7 +9,7 @@
 
 ## Usage
 
-### Project config
+### Project schema
 
 ```jsonc
 {
@@ -18,7 +18,7 @@
 }
 ```
 
-### App config
+### App schema
 
 ```jsonc
 {
@@ -27,7 +27,7 @@
 }
 ```
 
-### Page config
+### Page schema
 
 ```jsonc
 {
@@ -36,12 +36,21 @@
 }
 ```
 
-### Sitemap config
+### Sitemap schema
 
 ```jsonc
 {
   // Add line bellow to your `sitemap.json`
   "$schema": "https://jsonschema.ntnyq.com/sitemap.schema.json"
+}
+```
+
+### Component schema
+
+```jsonc
+{
+  // Add line bellow to your `<component>.json`
+  "$schema": "https://jsonschema.ntnyq.com/component.schema.json"
 }
 ```
 
@@ -51,6 +60,7 @@
 - [app.schema.json](./app.schema.json) Schema for `app.json`
 - [page.schema.json](./page.schema.json) Schema for `<page_name>.json`
 - [sitemap.schema.json](./sitemap.schema.json) Schema for `sitemap.json`
+- [component.schema.json](./component.schema.json) Schema for `<component>.json`
 
 ## Refs
 
@@ -58,6 +68,7 @@
 - [微信官方文档 - 全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
 - [微信官方文档 - 页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
 - [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html)
+- [微信官方文档 - 自定义组件配置](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)
 
 ## License
 

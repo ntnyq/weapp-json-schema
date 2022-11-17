@@ -1,0 +1,5 @@
+{
+  "$schema": "../../component.schema.json",
+  "component": true,
+  "usingComponents": {}
+}
