@@ -7,7 +7,7 @@
   "definitions": {
     "mime-type": {
       "type": "string",
-      "description": "",
+      "description": "最新客户端版本支持的 MimeType 类型",
       "enum": [
         "video/*",
         "audio/*",
