@@ -61,6 +61,35 @@ Config in your `<component_name>.json`:
 }
 ```
 
+2. Config in workspace `.vscode/settings.json`:
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["project.config.json"],
+      "url": "https://unpkg.com/weapp-json-schema/project.schema.json"
+    },
+    {
+      "fileMatch": ["app.json"],
+      "url": "https://unpkg.com/weapp-json-schema/app.schema.json"
+    },
+    {
+      "fileMatch": ["**/pages/**/*.json"],
+      "url": "https://unpkg.com/weapp-json-schema/page.schema.json"
+    },
+    {
+      "fileMatch": ["sitemap.json"],
+      "url": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
+    },
+    {
+      "fileMatch": ["**/components/**/*.json"],
+      "url": "https://unpkg.com/weapp-json-schema/component.schema.json"
+    }
+  ]
+}
+```
+
 ## Schemas
 
 - [project.schema.json](./project.schema.json) Schema for `project.config.json`
