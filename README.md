@@ -9,59 +9,9 @@
 
 ## Usage
 
-1. Use schema in json file:
+You can config in workspace's `.vscode/settings.json` to use json schemas or config in every specific files.
 
-### Project schema
-
-Config in your `project.config.json`:
-
-```jsonc
-{
-  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json"
-}
-```
-
-### App schema
-
-Config in your `app.json`:
-
-```jsonc
-{
-  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json"
-}
-```
-
-### Page schema
-
-Config in your `<page_name>.json`:
-
-```jsonc
-{
-  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json"
-}
-```
-
-### Sitemap schema
-
-Config in your `sitemap.json`:
-
-```jsonc
-{
-  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
-}
-```
-
-### Component schema
-
-Config in your `<component_name>.json`:
-
-```jsonc
-{
-  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json"
-}
-```
-
-2. Config in workspace `.vscode/settings.json`:
+### 1. Config in workspace `.vscode/settings.json`
 
 ```json
 {
@@ -87,6 +37,58 @@ Config in your `<component_name>.json`:
       "url": "https://unpkg.com/weapp-json-schema/component.schema.json"
     }
   ]
+}
+```
+
+### 2. Use json schema in specific file:
+
+#### Project schema
+
+Config in your `project.config.json`:
+
+```jsonc
+{
+  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json"
+}
+```
+
+#### App schema
+
+Config in your `app.json`:
+
+```jsonc
+{
+  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json"
+}
+```
+
+#### Page schema
+
+Config in your `<page_name>.json`:
+
+```jsonc
+{
+  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json"
+}
+```
+
+#### Sitemap schema
+
+Config in your `sitemap.json`:
+
+```jsonc
+{
+  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
+}
+```
+
+#### Component schema
+
+Config in your `<component_name>.json`:
+
+```jsonc
+{
+  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json"
 }
 ```
 
