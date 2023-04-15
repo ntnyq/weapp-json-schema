@@ -9,48 +9,55 @@
 
 ## Usage
 
+1. Use schema in json file:
+
 ### Project schema
+
+Config in your `project.config.json`:
 
 ```jsonc
 {
-  // Add line bellow to your `project.config.json`
-  "$schema": "https://jsonschema.ntnyq.com/project.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json"
 }
 ```
 
 ### App schema
 
+Config in your `app.json`:
+
 ```jsonc
 {
-  // Add line bellow to your `app.json`
-  "$schema": "https://jsonschema.ntnyq.com/app.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json"
 }
 ```
 
 ### Page schema
 
+Config in your `<page_name>.json`:
+
 ```jsonc
 {
-  // Add line bellow to your `<page_name>.json`
-  "$schema": "https://jsonschema.ntnyq.com/page.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json"
 }
 ```
 
 ### Sitemap schema
 
+Config in your `sitemap.json`:
+
 ```jsonc
 {
-  // Add line bellow to your `sitemap.json`
-  "$schema": "https://jsonschema.ntnyq.com/sitemap.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
 }
 ```
 
 ### Component schema
 
+Config in your `<component_name>.json`:
+
 ```jsonc
 {
-  // Add line bellow to your `<component>.json`
-  "$schema": "https://jsonschema.ntnyq.com/component.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json"
 }
 ```
 
@@ -60,7 +67,7 @@
 - [app.schema.json](./app.schema.json) Schema for `app.json`
 - [page.schema.json](./page.schema.json) Schema for `<page_name>.json`
 - [sitemap.schema.json](./sitemap.schema.json) Schema for `sitemap.json`
-- [component.schema.json](./component.schema.json) Schema for `<component>.json`
+- [component.schema.json](./component.schema.json) Schema for `<component_name>.json`
 
 ## Refs
 
