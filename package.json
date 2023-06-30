@@ -1,7 +1,7 @@
 {
   "name": "weapp-json-schema",
   "version": "0.1.0",
-  "packageManager": "pnpm@8.2.0",
+  "packageManager": "pnpm@8.6.5",
   "description": "JSON schema for weapp",
   "keywords": [
     "json-schema",
@@ -29,11 +29,11 @@
   "repository": "ntnyq/weapp-json-schema",
   "prettier": "@ntnyq/prettier-config",
   "devDependencies": {
-    "@ntnyq/prettier-config": "^1.6.1",
-    "@types/node": "^18.15.11",
+    "@ntnyq/prettier-config": "^1.9.0",
+    "@types/node": "^20.3.2",
     "ajv": "^8.12.0",
-    "bumpp": "^9.1.0",
-    "prettier": "^2.8.7",
-    "vitest": "^0.30.1"
+    "bumpp": "^9.1.1",
+    "prettier": "^2.8.8",
+    "vitest": "^0.32.2"
   }
 }
