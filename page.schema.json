@@ -8,6 +8,10 @@
     "hex-color": {
       "type": "string",
       "pattern": "#[0-9a-f]{6}"
+    },
+    "rgba-hex-color": {
+      "type": "string",
+      "pattern": "#[0-9a-f]{8}"
     }
   },
   "properties": {
@@ -36,13 +40,19 @@
     "homeButton": {
       "type": "boolean",
       "description": "在非首页、非页面栈最底层页面或非 tabbar 内页面中的导航栏展示 home 键",
-      "default": true
+      "default": false
     },
     "backgroundColor": {
       "type": "string",
       "description": "窗口的背景色",
       "default": "#ffffff",
       "$ref": "#/definitions/hex-color"
+    },
+    "backgroundColorContent": {
+      "type": "string",
+      "description": "页面容器背景色",
+      "default": "#ffffffff",
+      "$ref": "#/definitions/rgba-hex-color"
     },
     "backgroundTextStyle": {
       "type": "string",
@@ -118,7 +128,8 @@
     "style": {
       "type": "string",
       "description": "指定使用升级后的 weui 样式, v2 表示启用新版的组件样式",
-      "enum": ["v2"]
+      "default": "default",
+      "enum": ["default", "v2"]
     },
     "singlePage": {
       "type": "object",
@@ -165,6 +176,11 @@
       "description": "指定小程序全局的默认渲染后端",
       "default": "webview",
       "enum": ["webview", "skyline"]
+    },
+    "componentFramework": {
+      "type": "string",
+      "description": "组件框架",
+      "enum": ["glass-ease"]
     }
   }
 }
