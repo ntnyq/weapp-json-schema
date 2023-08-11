@@ -64,9 +64,7 @@
           "description": "优先级，值越大则规则越早被匹配，否则默认从上到下匹配"
         }
       },
-      "required": [
-        "page"
-      ]
+      "required": ["page"]
     }
   },
   "properties": {
@@ -80,7 +78,5 @@
       }
     }
   },
-  "required": [
-    "rules"
-  ]
+  "required": ["rules"]
 }

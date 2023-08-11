@@ -8,9 +8,7 @@
     "component": {
       "type": "boolean",
       "default": true,
-      "enum": [
-        true
-      ]
+      "enum": [true]
     },
     "usingComponents": {
       "type": "object",
@@ -25,7 +23,5 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "component"
-  ]
+  "required": ["component"]
 }

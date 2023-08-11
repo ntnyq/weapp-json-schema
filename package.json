@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "test": "vitest",
+    "prepare": "husky install",
     "release": "bumpp && npm publish"
   },
   "homepage": "https://github.com/ntnyq/weapp-json-schema#readme",
@@ -33,7 +34,12 @@
     "@types/node": "^20.4.9",
     "ajv": "^8.12.0",
     "bumpp": "^9.1.1",
+    "husky": "^8.0.3",
+    "nano-staged": "^0.8.0",
     "prettier": "^3.0.1",
     "vitest": "^0.34.1"
+  },
+  "nano-staged": {
+    "*": "prettier -uw"
   }
 }

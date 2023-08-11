@@ -7,14 +7,7 @@
   "definitions": {
     "match-type": {
       "type": "string",
-      "enum": [
-        "file",
-        "folder",
-        "suffix",
-        "prefix",
-        "glob",
-        "regexp"
-      ]
+      "enum": ["file", "folder", "suffix", "prefix", "glob", "regexp"]
     },
     "array-of-match": {
       "type": "array",
@@ -32,10 +25,7 @@
             "minLength": 1
           }
         },
-        "required": [
-          "type",
-          "value"
-        ]
+        "required": ["type", "value"]
       }
     }
   },
@@ -72,10 +62,7 @@
       "type": "string",
       "description": "编译类型",
       "default": "miniprogram",
-      "enum": [
-        "miniprogram",
-        "plugin"
-      ]
+      "enum": ["miniprogram", "plugin"]
     },
     "setting": {
       "type": "object",
@@ -175,19 +162,13 @@
             {
               "type": "array",
               "items": {
-                "enum": [
-                  "typescript",
-                  "less",
-                  "sass"
-                ]
+                "enum": ["typescript", "less", "sass"]
               },
               "uniqueItems": true
             },
             {
               "type": "boolean",
-              "enum": [
-                false
-              ]
+              "enum": [false]
             }
           ]
         },
@@ -226,10 +207,7 @@
                 "minLength": 1
               }
             },
-            "required": [
-              "packageJsonPath",
-              "miniprogramNpmDistDir"
-            ]
+            "required": ["packageJsonPath", "miniprogramNpmDistDir"]
           }
         },
         "coverView": {
@@ -287,11 +265,7 @@
           "pattern": "^[0-9]+.[0-9]+.[0-9]+$"
         },
         {
-          "enum": [
-            "latest",
-            "trial",
-            "widelyUsed"
-          ]
+          "enum": ["latest", "trial", "widelyUsed"]
         }
       ]
     },
@@ -377,9 +351,5 @@
       "description": "项目描述"
     }
   },
-  "required": [
-    "appid",
-    "projectname",
-    "compileType"
-  ]
+  "required": ["appid", "projectname", "compileType"]
 }
