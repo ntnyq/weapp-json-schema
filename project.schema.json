@@ -62,7 +62,16 @@
       "type": "string",
       "description": "编译类型",
       "default": "miniprogram",
-      "enum": ["miniprogram", "plugin"]
+      "anyOf": [
+        {
+          "const": "miniprogram",
+          "description": "当前为普通小程序项目"
+        },
+        {
+          "const": "plugin",
+          "description": "当前为小程序插件项目"
+        }
+      ]
     },
     "setting": {
       "type": "object",
@@ -262,10 +271,20 @@
       "description": "基础库版本",
       "oneOf": [
         {
-          "pattern": "^[0-9]+.[0-9]+.[0-9]+$"
+          "pattern": "^[0-9]+.[0-9]+.[0-9]+$",
+          "description": "版本号"
         },
         {
-          "enum": ["latest", "trial", "widelyUsed"]
+          "const": "latest",
+          "description": "最新的非灰度中的基础库"
+        },
+        {
+          "const": "trial",
+          "description": "最新的基础库"
+        },
+        {
+          "const": "widelyUsed",
+          "description": "使用比例最高的基础库"
         }
       ]
     },

@@ -146,9 +146,18 @@
         },
         "navigationStyle": {
           "type": "string",
-          "description": "导航栏样式，仅支持以下值：default: 默认样式；custom：自定义导航栏，只保留右上角胶囊按钮",
+          "description": "导航栏样式",
           "default": "default",
-          "enum": ["default", "custom"]
+          "oneOf": [
+            {
+              "const": "default",
+              "description": "默认样式"
+            },
+            {
+              "const": "custom",
+              "description": "自定义导航栏，只保留右上角胶囊按钮"
+            }
+          ]
         },
         "homeButton": {
           "type": "boolean",
@@ -163,9 +172,12 @@
         },
         "backgroundTextStyle": {
           "type": "string",
-          "description": "下拉 loading 的样式，仅支持 dark / light",
+          "description": "下拉 loading 的样式",
           "default": "dark",
-          "enum": ["dark", "light"]
+          "anyOf": [
+            { "const": "dark", "description": "暗黑风格" },
+            { "const": "light", "description": "非暗黑风格" }
+          ]
         },
         "backgroundColorTop": {
           "type": "string",
@@ -191,19 +203,33 @@
         },
         "pageOrientation": {
           "type": "string",
-          "description": "屏幕旋转设置，支持 auto / portrait / landscape",
-          "default": "portrait"
+          "description": "屏幕旋转设置",
+          "default": "portrait",
+          "anyOf": [
+            { "const": "auto", "description": "页面支持屏幕旋转" },
+            { "const": "portrait", "description": "固定为竖屏显示" },
+            { "const": "landscape", "description": "固定为横屏显示" }
+          ]
         },
         "restartStrategy": {
           "type": "string",
-          "description": "重新启动策略配置。homePage：如果从这个页面退出小程序，下次将从首页冷启动；homePageAndLatestPage：如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）",
+          "description": "重新启动策略配置",
           "default": "homePage",
-          "enum": ["homePage", "homePageAndLatestPage"]
+          "anyOf": [
+            { "const": "homePage", "description": "如果从这个页面退出小程序，下次将从首页冷启动" },
+            {
+              "const": "homePageAndLatestPage",
+              "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
+            }
+          ]
         },
         "initialRenderingCache": {
           "type": "string",
-          "description": "页面初始渲染缓存配置，支持 static / dynamic",
-          "enum": ["static", "dynamic"]
+          "description": "页面初始渲染缓存配置",
+          "anyOf": [
+            { "const": "static", "description": "启用初始渲染缓存" },
+            { "const": "dynamic", "description": "“动态”初始渲染缓存" }
+          ]
         },
         "visualEffectInBackground": {
           "type": "string",
@@ -212,8 +238,13 @@
         },
         "handleWebviewPreload": {
           "type": "string",
-          "description": "控制预加载下个页面的时机。支持 static / manual / auto",
-          "default": "static"
+          "description": "控制预加载下个页面的时机",
+          "default": "static",
+          "anyOf": [
+            { "const": "static", "description": "默认值" },
+            { "const": "manual", "description": "开发者通过调用 wx.preloadWebview 触发" },
+            { "const": "auto", "description": "渲染线程空闲时进行预加载" }
+          ]
         }
       }
     },
@@ -346,7 +377,16 @@
       "description": "需要在后台使用的能力，如「音乐播放」",
       "items": {
         "type": "string",
-        "enum": ["audio", "location"]
+        "oneOf": [
+          {
+            "const": "audio",
+            "description": "后台音乐播放"
+          },
+          {
+            "const": "location",
+            "description": "后台定位"
+          }
+        ]
       },
       "uniqueItems": true
     },
@@ -355,15 +395,39 @@
       "description": "调用的地理位置相关隐私接口",
       "items": {
         "type": "string",
-        "enum": [
-          "getFuzzyLocation",
-          "getLocation",
-          "onLocationChange",
-          "startLocationUpdate",
-          "startLocationUpdateBackground",
-          "chooseLocation",
-          "choosePoi",
-          "chooseAddress"
+        "oneOf": [
+          {
+            "const": "getFuzzyLocation",
+            "description": "获取模糊地理位置"
+          },
+          {
+            "const": "getLocation",
+            "description": "获取精确地理位置"
+          },
+          {
+            "const": "onLocationChange",
+            "description": "监听实时地理位置变化事件"
+          },
+          {
+            "const": "startLocationUpdate",
+            "description": "接收位置消息（前台）"
+          },
+          {
+            "const": "startLocationUpdateBackground",
+            "description": "接收位置消息（前后台）"
+          },
+          {
+            "const": "chooseLocation",
+            "description": "打开地图选择位置"
+          },
+          {
+            "const": "choosePoi",
+            "description": "打开POI列表选择位置"
+          },
+          {
+            "const": "chooseAddress",
+            "description": "获取用户地址信息"
+          }
         ]
       },
       "uniqueItems": true
@@ -559,7 +623,13 @@
     "lazyCodeLoading": {
       "type": "string",
       "description": "配置自定义组件代码按需注入",
-      "enum": ["requiredComponents"]
+      "enum": ["requiredComponents"],
+      "oneOf": [
+        {
+          "const": "requiredComponents",
+          "description": "开启小程序「按需注入」"
+        }
+      ]
     },
     "singlePage": {
       "type": "object",
@@ -567,8 +637,17 @@
       "properties": {
         "navigationBarFit": {
           "type": "string",
-          "description": "导航栏与页面的相交状态，值为 float 时表示导航栏浮在页面上，与页面相交；值为 squeezed 时表示页面被导航栏挤压，与页面不相交。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
-          "enum": ["float", "squeezed"]
+          "description": "导航栏与页面的相交状态。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
+          "oneOf": [
+            {
+              "const": "float",
+              "description": "导航栏浮在页面上，与页面相交"
+            },
+            {
+              "const": "squeezed",
+              "description": "页面被导航栏挤压，与页面不相交"
+            }
+          ]
         }
       }
     },
@@ -601,7 +680,16 @@
         "firstPageNavigationStyle": {
           "type": "string",
           "description": "视频号直播打开的第一个页面的全屏状态使用自定义顶部",
-          "enum": ["default", "custom"]
+          "anyOf": [
+            {
+              "const": "default",
+              "description": "默认样式"
+            },
+            {
+              "const": "custom",
+              "description": "自定义顶部"
+            }
+          ]
         }
       }
     },
@@ -661,8 +749,52 @@
       "type": "string",
       "description": "指定小程序全局的默认渲染后端",
       "default": "webview",
-      "enum": ["webview", "skyline"]
+      "oneOf": [
+        {
+          "const": "webview",
+          "description": "Webview 渲染引擎"
+        },
+        {
+          "const": "skyline",
+          "description": "Skyline 渲染引擎"
+        }
+      ]
+    },
+    "rendererOptions": {
+      "type": "object",
+      "description": "小程序渲染后端的相关配置选项",
+      "properties": {
+        "defaultDisplayBlock": {
+          "type": "boolean",
+          "description": "开启默认Block布局",
+          "default": false
+        },
+        "disableABTest": {
+          "type": "boolean",
+          "description": "关闭 Skyline AB 实验",
+          "default": false
+        }
+      }
+    },
+    "componentFramework": {
+      "type": "string",
+      "description": "指定小程序使用的组件框架",
+      "default": "exparser",
+      "oneOf": [
+        { "const": "exparser", "description": "默认组件框架" },
+        { "const": "glass-easel", "description": "新版微信小程序组件框架" }
+      ]
     }
   },
+  "anyOf": [
+    {
+      "properties": {
+        "darkmode": {
+          "const": true
+        }
+      },
+      "required": ["themeLocation"]
+    }
+  ],
   "required": ["pages"]
 }

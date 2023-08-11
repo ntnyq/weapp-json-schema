@@ -9,9 +9,7 @@
     "es6": false,
     "postcss": false,
     "minified": false,
-    "useCompilerPlugins": [
-      "less"
-    ]
+    "useCompilerPlugins": ["less"]
   },
   "libVersion": "widelyUsed",
   "compileType": "miniprogram",

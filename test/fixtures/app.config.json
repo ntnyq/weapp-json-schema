@@ -1,14 +1,9 @@
 {
   "$schema": "../../app.schema.json",
-  "pages": [
-    "pages/home/index"
-  ],
+  "pages": ["pages/home/index"],
   "window": {},
   "lazyCodeLoading": "requiredComponents",
-  "requiredBackgroundModes": [
-    "audio",
-    "location"
-  ],
+  "requiredBackgroundModes": ["audio", "location"],
   "usingComponents": {
     "hello_world": "w1-xx/hello/world"
   },
@@ -22,9 +17,7 @@
   ],
   "preloadRule": {
     "hello": {
-      "packages": [
-        "hello"
-      ]
+      "packages": ["hello"]
     }
   },
   "plugins": {
@@ -36,5 +29,6 @@
   "permission": {},
   "resolveAlias": {},
   "resizable": false,
-  "darkmode": false
+  "darkmode": true,
+  "themeLocation": "./theme.json"
 }

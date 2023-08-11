@@ -8,7 +8,7 @@
     "component": {
       "type": "boolean",
       "default": true,
-      "enum": [true]
+      "const": true
     },
     "usingComponents": {
       "type": "object",
