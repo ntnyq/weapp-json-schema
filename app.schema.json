@@ -679,6 +679,7 @@
       "properties": {
         "firstPageNavigationStyle": {
           "type": "string",
+          "default": "default",
           "description": "视频号直播打开的第一个页面的全屏状态使用自定义顶部",
           "anyOf": [
             {
@@ -784,6 +785,11 @@
         { "const": "exparser", "description": "默认组件框架" },
         { "const": "glass-easel", "description": "新版微信小程序组件框架" }
       ]
+    },
+    "__usePrivacyCheck__": {
+      "type": "boolean",
+      "description": "是否启用隐私相关功能, 2023年9月15号不论是否配置都会启用",
+      "default": false
     }
   },
   "anyOf": [
