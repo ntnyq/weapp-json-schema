@@ -48,7 +48,7 @@ Config in your `project.config.json`:
 
 ```jsonc
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json",
 }
 ```
 
@@ -58,7 +58,7 @@ Config in your `app.json`:
 
 ```jsonc
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json",
 }
 ```
 
@@ -68,7 +68,7 @@ Config in your `<page_name>.json`:
 
 ```jsonc
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json",
 }
 ```
 
@@ -78,7 +78,7 @@ Config in your `sitemap.json`:
 
 ```jsonc
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json",
 }
 ```
 
@@ -88,7 +88,7 @@ Config in your `<component_name>.json`:
 
 ```jsonc
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json"
+  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json",
 }
 ```
 
@@ -107,6 +107,10 @@ Config in your `<component_name>.json`:
 - [微信官方文档 - 页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
 - [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html)
 - [微信官方文档 - 自定义组件配置](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)
+
+# Updated At
+
+2024-01-16
 
 ## License
 

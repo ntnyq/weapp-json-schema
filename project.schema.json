@@ -27,6 +27,164 @@
         },
         "required": ["type", "value"]
       }
+    },
+    "skeleton": {
+      "type": "object",
+      "description": "骨架屏配置",
+      "properties": {
+        "loading": {
+          "type": "string",
+          "description": "骨架屏动画",
+          "default": "spin",
+          "anyOf": [
+            { "const": "shine", "description": "闪光" },
+            { "const": "spin", "description": "旋转" },
+            { "const": "chiaroscuro", "description": "明暗对比" }
+          ]
+        },
+        "outline": {
+          "type": "object",
+          "description": "骨架屏外边框设置",
+          "properties": {
+            "remain": {
+              "type": "boolean",
+              "description": "是否保持边框颜色",
+              "default": true
+            },
+            "replace": {
+              "type": "string",
+              "description": "remain 为 false 时替代 style.border"
+            }
+          }
+        },
+        "text": {
+          "type": "object",
+          "description": "骨架屏文字设置",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "骨架页面中文字块的的颜色，颜色值支持 16 进制"
+            }
+          }
+        },
+        "image": {
+          "type": "object",
+          "description": "骨架屏图片设置",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "骨架页面中被视为图片块的颜色"
+            },
+            "shape": {
+              "type": "string",
+              "description": "骨架页面中被视为图片块的形状",
+              "anyOf": [
+                { "const": "circle", "description": "圆形" },
+                { "const": "rect", "description": "矩形" }
+              ]
+            },
+            "shapeOpposite": {
+              "type": "array",
+              "description": "数组中每个元素是一个 DOM 选择器，用于选择 DOM 元素，被选择 DOM 的形状将和配置的 shape 形状相反",
+              "default": []
+            }
+          }
+        },
+        "button": {
+          "type": "object",
+          "description": "骨架屏按钮设置",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "骨架页面中被视为按钮块的颜色"
+            },
+            "excludes": {
+              "type": "array",
+              "description": "DOM 选择器，用来选择元素，该数组中的元素将不被视为按钮块",
+              "default": []
+            }
+          }
+        },
+        "pseudo": {
+          "type": "object",
+          "description": "骨架屏伪元素块设置",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "骨架页面中被视为伪元素块的颜色"
+            },
+            "shape": {
+              "type": "string",
+              "description": "来设置伪元素块的形状",
+              "anyOf": [
+                { "const": "circle", "description": "圆形" },
+                { "const": "rect", "description": "矩形" }
+              ]
+            }
+          }
+        },
+        "excludes": {
+          "type": "array",
+          "description": "如果你有不需要进行骨架处理的元素，那么将该元素的 CSS 选择器写入该数组。",
+          "default": []
+        },
+        "remove": {
+          "type": "array",
+          "description": "不需要生成页面骨架，且需要从 DOM 中移除的元素，配置值为移除元素的 CSS 选择器。",
+          "default": []
+        },
+        "hide": {
+          "type": "array",
+          "description": "不需要移除，但是通过设置其透明度为 0，来隐藏该元素，配置值为隐藏元素的 CSS 选择器。",
+          "default": []
+        },
+        "empty": {
+          "type": "array",
+          "description": "该数组中元素是 CSS 选择器，被选择的元素将被清空子元素",
+          "default": []
+        },
+        "grayBlock": {
+          "type": "array",
+          "description": "该数组中元素是 CSS 选择器，被选择的元素将被被插件处理成一个色块，色块的颜色和按钮块颜色一致。内部元素将不再做特殊处理，文字将隐藏",
+          "default": []
+        },
+        "showNative": {
+          "type": "boolean",
+          "description": "是否显示原生组件，为 false 时原生组件被处理为 view",
+          "default": false
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "骨架屏背景色",
+          "default": "transparent"
+        },
+        "mode": {
+          "type": "string",
+          "description": "模式",
+          "default": "fullscreen",
+          "anyOf": [
+            { "const": "fullscreen", "description": "绝对定位占满全屏" },
+            { "const": "auto", "description": "高度随内容撑开" }
+          ]
+        },
+        "templateName": {
+          "type": "string",
+          "description": "骨架屏模板的 name 值",
+          "default": "skeleton"
+        },
+        "cssUnit": {
+          "type": "string",
+          "description": "CSS单位",
+          "default": "rpx",
+          "enum": ["rpx", "rem", "vw", "vh", "vmin", "vmax"]
+        },
+        "decimal": {
+          "type": "integer",
+          "description": "生成骨架页面中 css 值保留的小数位数，默认值是 4",
+          "minimum": 1,
+          "default": 4
+        }
+      }
     }
   },
   "properties": {
@@ -263,6 +421,11 @@
         "showES6CompileOption": {
           "type": "boolean",
           "description": "是否在本地设置中展示传统的 ES6 转 ES5 开关（对应 es6），增强编译开关 （对应 enhance）"
+        },
+        "skylineRenderEnable": {
+          "type": "boolean",
+          "description": "是否开启 skyline 渲染调试",
+          "default": true
         }
       }
     },
@@ -368,6 +531,44 @@
     "description": {
       "type": "string",
       "description": "项目描述"
+    },
+    "editorSetting": {
+      "type": "object",
+      "description": "指定自动生成的文件的 tabIndent 和 tabSize",
+      "properties": {
+        "tabIndent": {
+          "type": "boolean",
+          "description": "是否使用 tab 缩进"
+        },
+        "tabSize": {
+          "type": "number",
+          "description": "tab 大小",
+          "minimum": 1
+        }
+      }
+    },
+    "skeletonConfig": {
+      "type": "object",
+      "description": "骨架屏相关设置",
+      "properties": {
+        "global": {
+          "type": "object",
+          "description": "全局骨架屏配置",
+          "$ref": "#/definitions/skeleton"
+        },
+        "pages": {
+          "type": "object",
+          "description": "指向页面的骨架屏配置",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[a-zA-z/]+$": {
+              "type": "object",
+              "description": "页面骨架屏配置",
+              "$ref": "#/definitions/skeleton"
+            }
+          }
+        }
+      }
     }
   },
   "required": ["appid", "projectname", "compileType"]

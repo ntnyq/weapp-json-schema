@@ -15,5 +15,9 @@
   "compileType": "miniprogram",
   "watchOptions": {
     "ignore": []
+  },
+  "skeletonConfig": {
+    "global": {},
+    "pages": {}
   }
 }
