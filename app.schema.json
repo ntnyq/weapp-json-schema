@@ -790,6 +790,44 @@
       "type": "boolean",
       "description": "是否启用隐私相关功能, 2023年9月15号不论是否配置都会启用",
       "default": false
+    },
+    "miniApp": {
+      "type": "object",
+      "description": "多端模式场景接入身份管理服务时开启小程序授权页相关配置",
+      "properties": {
+        "useAuthorizePage": {
+          "type": "boolean",
+          "description": "开启小程序授权页"
+        }
+      }
+    },
+    "static": {
+      "type": "array",
+      "description": "配置特定每个目录/文件只能发布到特定的平台(多端场景)",
+      "items": {
+        "type": "object",
+        "description": "配置项单项",
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "description": "匹配模式"
+          },
+          "platforms": {
+            "type": "array",
+            "description": "匹配平台",
+            "items": {
+              "type": "string",
+              "enum": ["mini-wechat", "mini-ios", "mini-android"]
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "convertRpxToVw": {
+      "type": "boolean",
+      "description": "是否将 rpx 单位转换为 vw 单位，开启后能修复某些 rpx 下的精度问题",
+      "default": false
     }
   },
   "anyOf": [
