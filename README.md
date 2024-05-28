@@ -17,7 +17,7 @@ You can config in workspace's `.vscode/settings.json` to use json schemas or con
 {
   "json.schemas": [
     {
-      "fileMatch": ["project.config.json"],
+      "fileMatch": ["project.config.json", "project.private.config.json"],
       "url": "https://unpkg.com/weapp-json-schema/project.schema.json"
     },
     {
@@ -44,7 +44,7 @@ You can config in workspace's `.vscode/settings.json` to use json schemas or con
 
 #### Project schema
 
-Config in your `project.config.json`:
+Config in your `project.config.json` or `project.private.config.json`:
 
 ```jsonc
 {
