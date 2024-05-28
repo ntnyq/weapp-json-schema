@@ -5,6 +5,7 @@
   "description": "starter-taro-vue",
   "appid": "wx9d6b29dabbb43222",
   "setting": {
+    "condition": true,
     "urlCheck": true,
     "es6": false,
     "postcss": false,

@@ -235,6 +235,12 @@
       "type": "object",
       "description": "项目设置",
       "properties": {
+        "condition": {
+          "type": "boolean",
+          "description": "启用条件编译",
+          "markdownDescription": "启用 [条件编译](https://dev.weixin.qq.com/docs/framework/dev/framework/operation/condition-compile.html)",
+          "default": false
+        },
         "es6": {
           "type": "boolean",
           "description": "是否启用 es6 转 es5",
