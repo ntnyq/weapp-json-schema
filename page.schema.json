@@ -218,6 +218,22 @@
         { "const": "skyline", "description": "新班渲染引擎" }
       ]
     },
+    "rendererOptions": {
+      "type": "object",
+      "description": "小程序渲染后端的相关配置选项",
+      "properties": {
+        "defaultDisplayBlock": {
+          "type": "boolean",
+          "description": "开启默认Block布局",
+          "default": false
+        },
+        "disableABTest": {
+          "type": "boolean",
+          "description": "关闭 Skyline AB 实验",
+          "default": false
+        }
+      }
+    },
     "componentFramework": {
       "type": "string",
       "description": "组件框架",
