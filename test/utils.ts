@@ -2,7 +2,7 @@ import path from 'node:path'
 import { promises as fs } from 'node:fs'
 import { URL, fileURLToPath } from 'node:url'
 import Ajv from 'ajv'
-import type { Schema, Options as AjvOptions } from 'ajv'
+import type { Options as AjvOptions, Schema } from 'ajv'
 
 export const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)

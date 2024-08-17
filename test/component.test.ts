@@ -1,12 +1,9 @@
-import { describe, it, expect } from 'vitest'
-import { loadFixture, createValidateFn } from './utils'
+import { expect, it } from 'vitest'
+import { createValidateFn, loadFixture } from './utils'
 
-describe('component.schema.json', async () => {
+it('component.schema.json', async () => {
   const validate = await createValidateFn('component')
+  const fixture = await loadFixture('component.config')
 
-  it('should pass validator', async () => {
-    const fixture = await loadFixture('component.config')
-    const valid = validate(fixture)
-    expect(valid).toBeTruthy()
-  })
+  expect(validate(fixture)).toBeTruthy()
 })

@@ -46,9 +46,9 @@ You can config in workspace's `.vscode/settings.json` to use json schemas or con
 
 Config in your `project.config.json` or `project.private.config.json`:
 
-```jsonc
+```json
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json",
+  "$schema": "https://unpkg.com/weapp-json-schema/project.schema.json"
 }
 ```
 
@@ -56,9 +56,9 @@ Config in your `project.config.json` or `project.private.config.json`:
 
 Config in your `app.json`:
 
-```jsonc
+```json
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json",
+  "$schema": "https://unpkg.com/weapp-json-schema/app.schema.json"
 }
 ```
 
@@ -66,9 +66,9 @@ Config in your `app.json`:
 
 Config in your `<page_name>.json`:
 
-```jsonc
+```json
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json",
+  "$schema": "https://unpkg.com/weapp-json-schema/page.schema.json"
 }
 ```
 
@@ -76,9 +76,9 @@ Config in your `<page_name>.json`:
 
 Config in your `sitemap.json`:
 
-```jsonc
+```json
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json",
+  "$schema": "https://unpkg.com/weapp-json-schema/sitemap.schema.json"
 }
 ```
 
@@ -86,9 +86,9 @@ Config in your `sitemap.json`:
 
 Config in your `<component_name>.json`:
 
-```jsonc
+```json
 {
-  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json",
+  "$schema": "https://unpkg.com/weapp-json-schema/component.schema.json"
 }
 ```
 

@@ -1,12 +1,9 @@
-import { describe, it, expect } from 'vitest'
-import { loadFixture, createValidateFn } from './utils'
+import { expect, it } from 'vitest'
+import { createValidateFn, loadFixture } from './utils'
 
-describe('sitemap.schema.json', async () => {
+it('sitemap.schema.json', async () => {
   const validate = await createValidateFn('sitemap')
+  const fixture = await loadFixture('sitemap.config')
 
-  it('should pass validator', async () => {
-    const fixture = await loadFixture('sitemap.config')
-    const valid = validate(fixture)
-    expect(valid).toBeTruthy()
-  })
+  expect(validate(fixture)).toBeTruthy()
 })
