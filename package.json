@@ -32,9 +32,9 @@
   "devDependencies": {
     "@ntnyq/eslint-config": "3.0.0-beta.17",
     "@ntnyq/prettier-config": "^1.21.3",
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.7.4",
     "ajv": "^8.17.1",
-    "bumpp": "^9.5.2",
+    "bumpp": "^9.6.1",
     "husky": "^9.1.6",
     "nano-staged": "^0.8.0",
     "prettier": "^3.3.3",
