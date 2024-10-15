@@ -70,7 +70,7 @@
   "properties": {
     "rules": {
       "type": "array",
-      "description": "sitemap 索引规则列表",
+      "markdownDescription": "sitemap 索引规则列表\n\n[rules](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
       "items": {
         "type": "object",
         "description": "sitemap 索引规则",
