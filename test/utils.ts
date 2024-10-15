@@ -1,6 +1,6 @@
-import path from 'node:path'
 import { promises as fs } from 'node:fs'
-import { URL, fileURLToPath } from 'node:url'
+import path from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import Ajv from 'ajv'
 import type { Options as AjvOptions, Schema } from 'ajv'
 
