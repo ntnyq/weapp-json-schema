@@ -1,7 +1,7 @@
 {
   "name": "weapp-json-schema",
   "version": "0.4.0",
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@9.12.2",
   "description": "JSON schema for weapp",
   "keywords": [
     "json-schema",
@@ -30,9 +30,9 @@
     "url": "https://github.com/ntnyq/weapp-json-schema/issues"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.0.1",
+    "@ntnyq/eslint-config": "^3.1.0",
     "@ntnyq/prettier-config": "^1.21.3",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.7.7",
     "ajv": "^8.17.1",
     "bumpp": "^9.7.1",
     "husky": "^9.1.6",
