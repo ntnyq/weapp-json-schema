@@ -8,15 +8,19 @@
     "component": {
       "type": "boolean",
       "default": true,
-      "const": true
+      "const": true,
+      "description": "自定义组件声明",
+      "markdownDescription": "自定义组件声明\n\n[component](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)"
     },
     "usingComponents": {
       "type": "object",
-      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
+      "description": "声明当前自定义组件内引用的自定义组件",
+      "markdownDescription": "声明当前自定义组件内引用的自定义组件\n\n[usingComponents](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)",
       "patternProperties": {
         "^[a-z-_]+$": {
           "type": "string",
           "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
+          "markdownDescription": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 `wx-` 为前缀\n\n[usingComponents](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)",
           "pattern": "^(?!wx-).+"
         }
       },

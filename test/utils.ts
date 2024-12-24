@@ -1,4 +1,4 @@
-import { promises as fs } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import Ajv from 'ajv'
@@ -9,13 +9,13 @@ const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)
 
 export async function loadSchema(name: string): Promise<Schema> {
   const schemaPath = resolve(`${name}.schema.json`)
-  const schema = await fs.readFile(schemaPath, 'utf-8')
+  const schema = await readFile(schemaPath, 'utf-8')
   return JSON.parse(schema)
 }
 
 export async function loadFixture(name: string) {
   const fixturePath = resolve(`test/fixtures/${name}.json`)
-  const fixture = await fs.readFile(fixturePath, 'utf-8')
+  const fixture = await readFile(fixturePath, 'utf-8')
   return JSON.parse(fixture)
 }
 
