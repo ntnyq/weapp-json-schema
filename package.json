@@ -39,7 +39,7 @@
     "nano-staged": "^0.8.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.0-beta.3"
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,json,yml,yaml,md}": "eslint --fix"
