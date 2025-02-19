@@ -40,7 +40,10 @@
       "default": "default",
       "anyOf": [
         { "const": "default", "description": "默认样式" },
-        { "const": "custom", "description": "自定义导航栏，只保留右上角胶囊按钮" }
+        {
+          "const": "custom",
+          "description": "自定义导航栏，只保留右上角胶囊按钮"
+        }
       ]
     },
     "homeButton": {
@@ -111,7 +114,10 @@
       "description": "重新启动策略配置",
       "default": "homePage",
       "anyOf": [
-        { "const": "homePage", "description": "如果从这个页面退出小程序，下次将从首页冷启动" },
+        {
+          "const": "homePage",
+          "description": "如果从这个页面退出小程序，下次将从首页冷启动"
+        },
         {
           "const": "homePageAndLatestPage",
           "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
@@ -141,7 +147,10 @@
       "default": "static",
       "anyOf": [
         { "const": "static", "description": "默认值" },
-        { "const": "manual", "description": "开发者通过调用 wx.preloadWebview 触发" },
+        {
+          "const": "manual",
+          "description": "开发者通过调用 wx.preloadWebview 触发"
+        },
         { "const": "auto", "description": "渲染线程空闲时进行预加载" }
       ]
     },
@@ -175,7 +184,10 @@
           "description": "导航栏与页面的相交状态。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
           "anyOf": [
             { "const": "float", "description": "导航栏浮在页面上，与页面相交" },
-            { "const": "squeezed", "description": "页面被导航栏挤压，与页面不相交" }
+            {
+              "const": "squeezed",
+              "description": "页面被导航栏挤压，与页面不相交"
+            }
           ]
         }
       }
