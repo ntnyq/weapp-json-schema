@@ -14,12 +14,15 @@ export async function loadSchema(name: string): Promise<Schema> {
 }
 
 export async function loadFixture(name: string) {
-  const fixturePath = resolve(`test/fixtures/${name}.json`)
+  const fixturePath = resolve(`tests/fixtures/${name}.json`)
   const fixture = await readFile(fixturePath, 'utf-8')
   return JSON.parse(fixture)
 }
 
-export async function createValidateFn(schemaName: string, options?: AjvOptions) {
+export async function createValidateFn(
+  schemaName: string,
+  options?: AjvOptions,
+) {
   const ajv = new Ajv({
     keywords: ['markdownDescription'],
     ...options,

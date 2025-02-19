@@ -1,7 +1,8 @@
 {
   "name": "weapp-json-schema",
+  "type": "module",
   "version": "0.4.0",
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@10.4.1",
   "description": "JSON schema for weapp",
   "keywords": [
     "json-schema",
@@ -20,6 +21,10 @@
   "bugs": {
     "url": "https://github.com/ntnyq/weapp-json-schema/issues"
   },
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
   "files": [
     "*.schema.json"
   ],
@@ -30,16 +35,22 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.10.2",
-    "@ntnyq/prettier-config": "^1.22.0",
-    "@types/node": "^22.10.2",
+    "@ntnyq/eslint-config": "^4.0.0-beta.8",
+    "@ntnyq/prettier-config": "^2.0.0",
+    "@types/node": "^22.13.4",
     "ajv": "^8.17.1",
-    "bumpp": "^9.9.2",
+    "bumpp": "^10.0.3",
+    "eslint": "^9.20.1",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
-    "vitest": "^3.0.0-beta.3"
+    "prettier": "^3.5.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,json,yml,yaml,md}": "eslint --fix"
