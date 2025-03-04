@@ -25,6 +25,20 @@
         }
       },
       "additionalProperties": false
+    },
+    "styleIsolation": {
+      "type": "string",
+      "description": "定义样式隔离选项",
+      "default": "isolated",
+      "enum": ["isolated", "apply-shared", "shared"]
+    },
+    "virtualHost": {
+      "type": "boolean",
+      "description": "是否启用虚拟化宿主"
+    },
+    "addGlobalClass": {
+      "type": "boolean",
+      "description": "是否添加全局样式类"
     }
   },
   "required": ["component"]
