@@ -1,7 +1,7 @@
 {
   "name": "weapp-json-schema",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "packageManager": "pnpm@10.5.2",
   "description": "JSON schema for weapp",
   "keywords": [
