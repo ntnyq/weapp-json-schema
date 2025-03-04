@@ -201,7 +201,7 @@
         }
       }
     },
-    "tabbar": {
+    "tabBar": {
       "type": "object",
       "description": "底部 tab 栏的表现",
       "properties": {
@@ -222,7 +222,7 @@
         },
         "borderStyle": {
           "type": "string",
-          "description": "tabbar 上边框的颜色， 仅支持 black / white",
+          "description": "tabBar 上边框的颜色， 仅支持 black / white",
           "default": "black",
           "enum": ["black", "white"]
         },
@@ -235,7 +235,8 @@
             "properties": {
               "pagePath": {
                 "type": "string",
-                "description": "页面路径，必须在 pages 中先定义"
+                "description": "页面路径，必须在 pages 中先定义",
+                "pattern": "^pages/[a-zA-Z0-9-_/]+$"
               },
               "text": {
                 "type": "string",
@@ -267,6 +268,7 @@
           "default": false
         }
       },
+      "additionalProperties": false,
       "required": ["color", "selectedColor", "backgroundColor", "list"]
     },
     "networkTimeout": {
@@ -293,7 +295,8 @@
           "description": "wx.downloadFile 的超时时间，单位：毫秒",
           "default": 60000
         }
-      }
+      },
+      "additionalProperties": false
     },
     "debug": {
       "type": "boolean",
@@ -403,7 +406,8 @@
               "description": "插件 appId"
             }
           },
-          "required": ["version", "provider"]
+          "required": ["version", "provider"],
+          "additionalProperties": false
         }
       }
     },
@@ -515,7 +519,8 @@
           "description": "用户信息（小程序已回收，请使用头像昵称填写，小游戏可继续调用）",
           "$ref": "#/definitions/permission"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "sitemapLocation": {
       "type": "string",
@@ -539,7 +544,8 @@
           "type": "boolean",
           "description": "使用 WeUI 组件库"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "entranceDeclare": {
       "type": "object",
@@ -559,7 +565,8 @@
             }
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "darkmode": {
       "type": "boolean",
@@ -599,7 +606,8 @@
             }
           ]
         }
-      }
+      },
+      "additionalProperties": false
     },
     "supportedMaterials": {
       "type": "array",
@@ -694,7 +702,8 @@
             }
           ]
         }
-      }
+      },
+      "additionalProperties": false
     },
     "debugOptions": {
       "type": "object",
@@ -705,7 +714,8 @@
           "description": "是否开启 FPS 面板",
           "default": false
         }
-      }
+      },
+      "additionalProperties": false
     },
     "enablePassiveEvent": {
       "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
@@ -732,7 +742,8 @@
               "description": "是否设置 wheel 事件为 passive",
               "default": false
             }
-          }
+          },
+          "additionalProperties": false
         }
       ]
     },

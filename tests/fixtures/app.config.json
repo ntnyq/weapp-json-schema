@@ -7,6 +7,21 @@
   "usingComponents": {
     "hello_world": "w1-xx/hello/world"
   },
+  "tabBar": {
+    "color": "#ffffff",
+    "selectedColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "text": "Home",
+        "pagePath": "pages/home/index"
+      },
+      {
+        "text": "Home",
+        "pagePath": "pages/home/index"
+      }
+    ]
+  },
   "supportedMaterials": [
     {
       "materialType": "audio/*",

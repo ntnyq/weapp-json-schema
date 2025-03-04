@@ -48,7 +48,7 @@
     },
     "homeButton": {
       "type": "boolean",
-      "description": "在非首页、非页面栈最底层页面或非 tabbar 内页面中的导航栏展示 home 键",
+      "description": "在非首页、非页面栈最底层页面或非 tabBar 内页面中的导航栏展示 home 键",
       "default": false
     },
     "backgroundColor": {

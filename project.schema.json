@@ -494,7 +494,8 @@
           "type": "boolean",
           "description": "是否在本地设置中展示传统的 ES6 转 ES5 开关（对应 es6），增强编译开关 （对应 enhance）"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "libVersion": {
       "type": "string",
@@ -540,7 +541,8 @@
           "description": "配置打包时对符合指定规则的文件或文件夹进行忽略",
           "$ref": "#/definitions/array-of-match"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "debugOptions": {
       "type": "object",
@@ -551,7 +553,8 @@
           "description": "配置调试时于调试器 Sources 面板隐藏源代码的文件",
           "$ref": "#/definitions/array-of-match"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "watchOptions": {
       "type": "object",
@@ -564,7 +567,8 @@
             "minLength": 1
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "scripts": {
       "type": "object",
@@ -582,7 +586,8 @@
           "type": "string",
           "description": "上传前预处理命令"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "staticServerOptions": {
       "type": "object",
@@ -593,7 +598,8 @@
           "description": "指向项目路径下的某个目录作为静态资源路径",
           "minLength": 1
         }
-      }
+      },
+      "additionalProperties": false
     },
     "description": {
       "type": "string",
@@ -612,7 +618,8 @@
           "description": "tab 大小",
           "minimum": 1
         }
-      }
+      },
+      "additionalProperties": false
     },
     "skeletonConfig": {
       "type": "object",
