@@ -27,6 +27,8 @@
   },
   "skeletonConfig": {
     "global": {},
-    "pages": {}
+    "pages": {
+      "pages/index/index": {}
+    }
   }
 }

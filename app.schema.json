@@ -92,6 +92,7 @@
           "description": "分包页面路径，相对于分包根目录",
           "items": {
             "type": "string",
+            "pattern": "^pages/[a-zA-Z0-9-_/]+$",
             "description": "页面路径"
           },
           "minItems": 1
@@ -119,7 +120,8 @@
       "description": "页面路径列表",
       "items": {
         "type": "string",
-        "description": "页面路径"
+        "description": "页面路径",
+        "pattern": "^pages/[a-zA-Z0-9-_/]+$"
       },
       "minItems": 1,
       "uniqueItems": true
@@ -442,9 +444,8 @@
     "plugins": {
       "type": "object",
       "description": "声明小程序需要使用的插件",
-      "default": {},
       "patternProperties": {
-        "^.+$": {
+        "^[\\s\\S]+$": {
           "type": "object",
           "description": "插件名称",
           "properties": {
@@ -466,7 +467,7 @@
       "type": "object",
       "description": "分包预下载规则",
       "patternProperties": {
-        "^.+$": {
+        "^[\\s\\S]+$": {
           "type": "object",
           "description": "页面路径",
           "default": {
@@ -500,7 +501,7 @@
       "type": "object",
       "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
       "patternProperties": {
-        "^[a-z-_]+$": {
+        "^[a-zA-Z0-9-_]+$": {
           "type": "string",
           "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
           "pattern": "^(?!wx-).+"
@@ -741,10 +742,10 @@
       "type": "object",
       "description": "自定义模块映射规则",
       "patternProperties": {
-        "^.{1,}/\\*": {
+        "^[\\s\\S]+/\\*$": {
           "type": "string",
           "description": "resolveAlias 进行的是路径匹配，其中的 key 和 value 须以 /* 结尾",
-          "pattern": "^.{1,}/\\*$"
+          "pattern": "^[\\s\\S]+/\\*$"
         }
       },
       "additionalProperties": false

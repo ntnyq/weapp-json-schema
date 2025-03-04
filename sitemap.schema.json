@@ -41,7 +41,6 @@
             "type": "array",
             "description": "当 page 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）",
             "markdownDescription": "当 `page` 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）\n\n[rules.params](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
-            "default": [],
             "items": {
               "type": "string"
             }
