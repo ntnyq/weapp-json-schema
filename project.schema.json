@@ -36,7 +36,7 @@
           "type": "string",
           "description": "骨架屏动画",
           "default": "spin",
-          "anyOf": [
+          "oneOf": [
             { "const": "shine", "description": "闪光" },
             { "const": "spin", "description": "旋转" },
             { "const": "chiaroscuro", "description": "明暗对比" }
@@ -78,7 +78,7 @@
             "shape": {
               "type": "string",
               "description": "骨架页面中被视为图片块的形状",
-              "anyOf": [
+              "oneOf": [
                 { "const": "circle", "description": "圆形" },
                 { "const": "rect", "description": "矩形" }
               ]
@@ -116,7 +116,7 @@
             "shape": {
               "type": "string",
               "description": "来设置伪元素块的形状",
-              "anyOf": [
+              "oneOf": [
                 { "const": "circle", "description": "圆形" },
                 { "const": "rect", "description": "矩形" }
               ]
@@ -162,7 +162,7 @@
           "type": "string",
           "description": "模式",
           "default": "fullscreen",
-          "anyOf": [
+          "oneOf": [
             { "const": "fullscreen", "description": "绝对定位占满全屏" },
             { "const": "auto", "description": "高度随内容撑开" }
           ]
@@ -241,7 +241,7 @@
       "type": "string",
       "description": "编译类型",
       "default": "miniprogram",
-      "anyOf": [
+      "oneOf": [
         {
           "const": "miniprogram",
           "description": "当前为普通小程序项目"
