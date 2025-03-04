@@ -216,7 +216,10 @@
           "description": "重新启动策略配置",
           "default": "homePage",
           "anyOf": [
-            { "const": "homePage", "description": "如果从这个页面退出小程序，下次将从首页冷启动" },
+            {
+              "const": "homePage",
+              "description": "如果从这个页面退出小程序，下次将从首页冷启动"
+            },
             {
               "const": "homePageAndLatestPage",
               "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
@@ -242,7 +245,10 @@
           "default": "static",
           "anyOf": [
             { "const": "static", "description": "默认值" },
-            { "const": "manual", "description": "开发者通过调用 wx.preloadWebview 触发" },
+            {
+              "const": "manual",
+              "description": "开发者通过调用 wx.preloadWebview 触发"
+            },
             { "const": "auto", "description": "渲染线程空闲时进行预加载" }
           ]
         }
