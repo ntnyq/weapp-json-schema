@@ -35,7 +35,19 @@
           "page": {
             "type": "string",
             "description": "* 或页面的路径，* 表示所有页面，不能作为通配符使用",
-            "markdownDescription": "`*` 或页面的路径，`*` 表示所有页面，不能作为通配符使用\n\n[rules.page](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)"
+            "markdownDescription": "`*` 或页面的路径，`*` 表示所有页面，不能作为通配符使用\n\n[rules.page](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+            "oneOf": [
+              {
+                "type": "string",
+                "description": "所有页面",
+                "const": "*"
+              },
+              {
+                "type": "string",
+                "description": "页面路径",
+                "pattern": "^pages/[a-zA-Z0-9-_/]+$"
+              }
+            ]
           },
           "params": {
             "type": "array",

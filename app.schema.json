@@ -95,7 +95,8 @@
             "pattern": "^pages/[a-zA-Z0-9-_/]+$",
             "description": "页面路径"
           },
-          "minItems": 1
+          "minItems": 1,
+          "uniqueItems": true
         },
         "independent": {
           "type": "boolean",
@@ -479,7 +480,8 @@
               "description": "进入页面后预下载分包的 root 或 name。__APP__ 表示主包。",
               "items": {
                 "type": "string"
-              }
+              },
+              "uniqueItems": true
             },
             "network": {
               "type": "string",
@@ -488,6 +490,7 @@
               "enum": ["all", "wifi"]
             }
           },
+          "additionalProperties": false,
           "required": ["packages"]
         }
       }
