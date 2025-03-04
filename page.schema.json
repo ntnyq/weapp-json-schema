@@ -7,11 +7,11 @@
   "definitions": {
     "hex-color": {
       "type": "string",
-      "pattern": "#[0-9a-f]{6}"
+      "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
     },
     "rgba-hex-color": {
       "type": "string",
-      "pattern": "#[0-9a-f]{8}"
+      "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{4})$"
     }
   },
   "properties": {
@@ -109,51 +109,6 @@
       "description": "设置为 true 则页面整体不能上下滚动。",
       "default": false
     },
-    "restartStrategy": {
-      "type": "string",
-      "description": "重新启动策略配置",
-      "default": "homePage",
-      "anyOf": [
-        {
-          "const": "homePage",
-          "description": "如果从这个页面退出小程序，下次将从首页冷启动"
-        },
-        {
-          "const": "homePageAndLatestPage",
-          "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
-        }
-      ]
-    },
-    "initialRenderingCache": {
-      "type": "string",
-      "description": "页面初始渲染缓存配置",
-      "anyOf": [
-        { "const": "static", "description": "启用初始渲染缓存" },
-        { "const": "dynamic", "description": "“动态”初始渲染缓存" }
-      ]
-    },
-    "visualEffectInBackground": {
-      "type": "string",
-      "description": "切入系统后台时，隐藏页面内容，保护用户隐私",
-      "default": "none",
-      "anyOf": [
-        { "const": "none", "description": "不隐藏页面内容" },
-        { "const": "hidden", "description": "隐藏页面内容" }
-      ]
-    },
-    "handleWebviewPreload": {
-      "type": "string",
-      "description": "控制预加载下个页面的时机",
-      "default": "static",
-      "anyOf": [
-        { "const": "static", "description": "默认值" },
-        {
-          "const": "manual",
-          "description": "开发者通过调用 wx.preloadWebview 触发"
-        },
-        { "const": "auto", "description": "渲染线程空闲时进行预加载" }
-      ]
-    },
     "usingComponents": {
       "type": "object",
       "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
@@ -165,6 +120,15 @@
         }
       },
       "additionalProperties": false
+    },
+    "initialRenderingCache": {
+      "type": "string",
+      "description": "页面初始渲染缓存配置",
+      "anyOf": [
+        { "const": "static", "description": "启用初始渲染缓存" },
+        { "const": "dynamic", "description": "“动态”初始渲染缓存" },
+        { "const": "capture", "description": "自定义渲染缓存时机" }
+      ]
     },
     "style": {
       "type": "string",
@@ -191,6 +155,43 @@
           ]
         }
       }
+    },
+    "restartStrategy": {
+      "type": "string",
+      "description": "重新启动策略配置",
+      "default": "homePage",
+      "anyOf": [
+        {
+          "const": "homePage",
+          "description": "如果从这个页面退出小程序，下次将从首页冷启动"
+        },
+        {
+          "const": "homePageAndLatestPage",
+          "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
+        }
+      ]
+    },
+    "handleWebviewPreload": {
+      "type": "string",
+      "description": "控制预加载下个页面的时机",
+      "default": "static",
+      "anyOf": [
+        { "const": "static", "description": "默认值" },
+        {
+          "const": "manual",
+          "description": "开发者通过调用 wx.preloadWebview 触发"
+        },
+        { "const": "auto", "description": "渲染线程空闲时进行预加载" }
+      ]
+    },
+    "visualEffectInBackground": {
+      "type": "string",
+      "description": "切入系统后台时，隐藏页面内容，保护用户隐私",
+      "default": "none",
+      "anyOf": [
+        { "const": "none", "description": "不隐藏页面内容" },
+        { "const": "hidden", "description": "隐藏页面内容" }
+      ]
     },
     "enablePassiveEvent": {
       "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
