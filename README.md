@@ -110,7 +110,7 @@ Config in your `<component_name>.json`:
 
 ## Updated At
 
-2024-05-29
+2025-03-04
 
 ## License
 
