@@ -10,6 +10,14 @@
     "es6": false,
     "postcss": false,
     "minified": false,
+    "minifyWXMLSetting": {
+      "global": {
+        "collapseWhitespace": true
+      },
+      "foobar.wxml": {
+        "preserveLineBreaks": false
+      }
+    },
     "useCompilerPlugins": ["less"]
   },
   "libVersion": "widelyUsed",

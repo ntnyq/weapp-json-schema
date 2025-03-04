@@ -185,6 +185,27 @@
           "default": 4
         }
       }
+    },
+    "minify-wxml-setting": {
+      "type": "object",
+      "properties": {
+        "collapseWhitespace": {
+          "type": "boolean",
+          "description": "标签内所有连续空白符会被压缩成 1 个空格，换行的情况按 preserveLineBreaks 处理",
+          "default": true
+        },
+        "conservativeCollapse": {
+          "type": "boolean",
+          "description": "默认标签前后不保留空格，为 true 时标签前后会保留一个空格(当有时)",
+          "default": false
+        },
+        "preserveLineBreaks": {
+          "type": "boolean",
+          "description": "默认按 collapseWhitespace 处理，为 true 时所有换行都会被保留",
+          "default": false
+        }
+      },
+      "additionalProperties": false
     }
   },
   "properties": {
@@ -271,6 +292,11 @@
           "description": "上传代码时是否自动压缩 WXML 文件",
           "default": false
         },
+        "swc": {
+          "type": "boolean",
+          "description": "开启 swc 编译模式",
+          "default": false
+        },
         "uglifyFileName": {
           "type": "boolean",
           "description": "上传时进行代码保护",
@@ -311,6 +337,11 @@
           "type": "boolean",
           "description": "预览及真机调试的时主包、分包体积上限调整为4M（小程序）、8M（小游戏）"
         },
+        "skylineRenderEnable": {
+          "type": "boolean",
+          "description": "是否开启 skyline 渲染调试",
+          "default": true
+        },
         "babelSetting": {
           "type": "object",
           "description": "增强编译下 Babel 的配置项",
@@ -329,6 +360,16 @@
             }
           }
         },
+        "minifyWXMLSetting": {
+          "type": "object",
+          "patternProperties": {
+            "^(global|.*\\.wxml)$": {
+              "$ref": "#/definitions/minify-wxml-setting"
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1
+        },
         "useCompilerPlugins": {
           "description": "编译插件配置",
           "oneOf": [
@@ -341,7 +382,7 @@
             },
             {
               "type": "boolean",
-              "enum": [false]
+              "const": false
             }
           ]
         },
@@ -392,6 +433,11 @@
           "description": "预览、真机调试和本地模拟器等开发阶段是否过滤无依赖文件",
           "default": true
         },
+        "ignoreCodeQuality": {
+          "type": "boolean",
+          "description": "预览、真机调试上传等开发阶段是否不执行代码质量检测",
+          "default": false
+        },
         "checkInvalidKey": {
           "type": "boolean",
           "description": "是否展示 JSON 文件校验错误信息"
@@ -427,11 +473,6 @@
         "showES6CompileOption": {
           "type": "boolean",
           "description": "是否在本地设置中展示传统的 ES6 转 ES5 开关（对应 es6），增强编译开关 （对应 enhance）"
-        },
-        "skylineRenderEnable": {
-          "type": "boolean",
-          "description": "是否开启 skyline 渲染调试",
-          "default": true
         }
       }
     },
