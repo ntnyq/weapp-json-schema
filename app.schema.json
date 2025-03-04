@@ -5,65 +5,6 @@
   "title": "JSON schema for weapp app config",
   "description": "Configuration Schema for weapp app config",
   "definitions": {
-    "mime-type": {
-      "type": "string",
-      "description": "最新客户端版本支持的 MimeType 类型",
-      "enum": [
-        "video/*",
-        "audio/*",
-        "image/*",
-        "text/html",
-        "text/plain",
-        "application/*",
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/vnd.ms-word.document.macroEnabled.12",
-        "application/vnd.ms-excel",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "application/vnd.ms-excel.sheet.macroEnabled.12",
-        "application/vnd.ms-powerpoint",
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        "application/zip",
-        "application/vnd.rar",
-        "application/x-7z-compressed",
-        "application/x-photoshop",
-        "application/acad",
-        "application/x-cdr",
-        "application/dxf",
-        "application/step",
-        "application/rtf",
-        "application/postscript"
-      ]
-    },
-    "material": {
-      "type": "object",
-      "properties": {
-        "materialType": {
-          "type": "string",
-          "description": "支持文件类型的MimeType，音频，视频支持二级配置的通配模式，例如: video/*。通配模式配置和精确类型配置同时存在时，则优先使用精确类型的配置(例如video/*和video/mp4同时存在，会优先使用video/mp4的配置)。",
-          "$ref": "#/definitions/mime-type"
-        },
-        "name": {
-          "type": "string",
-          "description": "开发者配置的标题，在素材页面会展示该标题，配置中必须包含${nickname}, 代码包编译后会自动替换为小程序名称，如果声明了简称则会优先使用简称。除去${nickname}其余字数不得超过6个。",
-          "pattern": "(?=[$][{]nickname[}])",
-          "minLength": 12,
-          "maxLength": 17
-        },
-        "desc": {
-          "type": "string",
-          "description": "用途描述，会在推荐列表展示该描述，限定字数不超过22个。",
-          "minLength": 1,
-          "maxLength": 22
-        },
-        "path": {
-          "type": "string",
-          "description": "在该场景下打开小程序时跳转页面"
-        }
-      },
-      "required": ["materialType", "name", "desc", "path"]
-    },
     "permission": {
       "type": "object",
       "properties": {
@@ -74,6 +15,7 @@
           "maxLength": 30
         }
       },
+      "additionalProperties": false,
       "required": ["desc"]
     },
     "sub-package": {
@@ -104,6 +46,7 @@
           "default": false
         }
       },
+      "additionalProperties": false,
       "required": ["pages"]
     },
     "hex-color": {
@@ -664,7 +607,59 @@
       "items": {
         "type": "object",
         "description": "声明支持打开的文件类型，对一种文件类型只能声明一种处理方式",
-        "$ref": "#/definitions/material"
+        "properties": {
+          "materialType": {
+            "type": "string",
+            "description": "支持文件类型的 MimeType，音频，视频支持二级配置的通配模式，例如: video/*。通配模式配置和精确类型配置同时存在时，则优先使用精确类型的配置(例如 video/* 和 video/mp4 同时存在，会优先使用 video/mp4 的配置)。",
+            "enum": [
+              "video/*",
+              "audio/*",
+              "image/*",
+              "text/html",
+              "text/plain",
+              "application/*",
+              "application/pdf",
+              "application/msword",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "application/vnd.ms-word.document.macroEnabled.12",
+              "application/vnd.ms-excel",
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "application/vnd.ms-excel.sheet.macroEnabled.12",
+              "application/vnd.ms-powerpoint",
+              "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+              "application/zip",
+              "application/vnd.rar",
+              "application/x-7z-compressed",
+              "application/x-photoshop",
+              "application/acad",
+              "application/x-cdr",
+              "application/dxf",
+              "application/step",
+              "application/rtf",
+              "application/postscript"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "开发者配置的标题，在素材页面会展示该标题，配置中必须包含 ${nickname}, 代码包编译后会自动替换为小程序名称，如果声明了简称则会优先使用简称。除去 ${nickname} 其余字数不得超过 6 个。",
+            "pattern": "(?=[$][{]nickname[}])",
+            "minLength": 12,
+            "maxLength": 17
+          },
+          "desc": {
+            "type": "string",
+            "description": "用途描述，会在推荐列表展示该描述，限定字数不超过 22 个。",
+            "minLength": 1,
+            "maxLength": 22
+          },
+          "path": {
+            "type": "string",
+            "description": "在该场景下打开小程序时跳转页面",
+            "pattern": "^pages/[a-zA-Z0-9-_/]+$"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["materialType", "name", "desc", "path"]
       }
     },
     "serviceProviderTicket": {
@@ -838,7 +833,8 @@
           "type": "boolean",
           "description": "开启小程序授权页"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "static": {
       "type": "array",
@@ -860,13 +856,62 @@
             },
             "uniqueItems": true
           }
-        }
+        },
+        "additionalProperties": false
       }
     },
     "convertRpxToVw": {
       "type": "boolean",
       "description": "是否将 rpx 单位转换为 vw 单位，开启后能修复某些 rpx 下的精度问题",
       "default": false
+    },
+    "chatTools": {
+      "type": "array",
+      "description": "指定聊天工具对应的独立分包",
+      "items": {
+        "type": "object",
+        "description": "指定聊天工具对应的独立分包",
+        "properties": {
+          "root": {
+            "type": "string",
+            "description": "分包根目录"
+          },
+          "entryPagePath": {
+            "type": "string",
+            "description": "聊天工具启动路径",
+            "pattern": "^pages/[a-zA-Z0-9-_/]+$"
+          },
+          "desc": {
+            "type": "string",
+            "description": "聊天工具描述"
+          },
+          "scopes": {
+            "type": "array",
+            "description": "分包中会使用的 scope 权限",
+            "items": {
+              "type": "string",
+              "enum": [
+                "scope.userLocation",
+                "scope.userFuzzyLocation",
+                "scope.userLocationBackground",
+                "scope.record",
+                "scope.camera",
+                "scope.bluetooth",
+                "scope.writePhotosAlbum",
+                "scope.addPhoneContact",
+                "scope.addPhoneCalendar",
+                "scope.werun",
+                "scope.address",
+                "scope.invoiceTitle",
+                "scope.invoice",
+                "scope.userInfo"
+              ]
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "oneOf": [
