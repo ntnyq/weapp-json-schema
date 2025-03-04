@@ -106,7 +106,7 @@
     },
     "hex-color": {
       "type": "string",
-      "pattern": "#[0-9a-f]{6}"
+      "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
     }
   },
   "properties": {
@@ -237,6 +237,7 @@
         "visualEffectInBackground": {
           "type": "string",
           "description": "切入系统后台时，隐藏页面内容，保护用户隐私。支持 hidden / none",
+          "enum": ["none", "hidden"],
           "default": "none"
         },
         "handleWebviewPreload": {
@@ -446,10 +447,6 @@
         "^.+$": {
           "type": "object",
           "description": "插件名称",
-          "default": {
-            "version": "",
-            "provider": ""
-          },
           "properties": {
             "version": {
               "type": "string",
@@ -771,17 +768,49 @@
       "type": "object",
       "description": "小程序渲染后端的相关配置选项",
       "properties": {
-        "defaultDisplayBlock": {
-          "type": "boolean",
-          "description": "开启默认Block布局",
-          "default": false
-        },
-        "disableABTest": {
-          "type": "boolean",
-          "description": "关闭 Skyline AB 实验",
-          "default": false
+        "skyline": {
+          "type": "object",
+          "description": "Skyline 渲染引擎的相关配置项",
+          "properties": {
+            "defaultDisplayBlock": {
+              "type": "boolean",
+              "description": "开启默认 Block 布局",
+              "default": false
+            },
+            "defaultContentBox": {
+              "type": "boolean",
+              "description": "开启默认 ContentBox 盒模型",
+              "default": false
+            },
+            "tagNameStyleIsolation": {
+              "type": "string",
+              "description": "开启 tag 选择器全局匹配",
+              "anyOf": [
+                {
+                  "const": "legacy",
+                  "description": "不受样式隔离约束"
+                },
+                {
+                  "const": "isolated",
+                  "description": "遵循样式隔离机制"
+                }
+              ],
+              "default": "isolated"
+            },
+            "enableScrollViewAutoSize": {
+              "type": "boolean",
+              "description": "开启 scroll-view 自动撑开",
+              "default": false
+            },
+            "disableABTest": {
+              "type": "boolean",
+              "description": "关闭 Skyline AB 实验",
+              "default": false
+            }
+          }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "componentFramework": {
       "type": "string",
