@@ -1,14 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
   "$id": "https://jsonschema.ntnyq.com/project.schema.json",
   "title": "JSON schema for weapp project config",
   "description": "Configuration Schema for weapp project config",
+  "type": "object",
   "definitions": {
-    "match-type": {
-      "type": "string",
-      "enum": ["file", "folder", "suffix", "prefix", "glob", "regexp"]
-    },
     "array-of-match": {
       "type": "array",
       "items": {
@@ -27,6 +23,31 @@
         },
         "required": ["type", "value"]
       }
+    },
+    "match-type": {
+      "type": "string",
+      "enum": ["file", "folder", "suffix", "prefix", "glob", "regexp"]
+    },
+    "minify-wxml-setting": {
+      "type": "object",
+      "properties": {
+        "collapseWhitespace": {
+          "type": "boolean",
+          "description": "标签内所有连续空白符会被压缩成 1 个空格，换行的情况按 preserveLineBreaks 处理",
+          "default": true
+        },
+        "conservativeCollapse": {
+          "type": "boolean",
+          "description": "默认标签前后不保留空格，为 true 时标签前后会保留一个空格(当有时)",
+          "default": false
+        },
+        "preserveLineBreaks": {
+          "type": "boolean",
+          "description": "默认按 collapseWhitespace 处理，为 true 时所有换行都会被保留",
+          "default": false
+        }
+      },
+      "additionalProperties": false
     },
     "skeleton": {
       "type": "object",
@@ -205,45 +226,20 @@
         }
       },
       "additionalProperties": false
-    },
-    "minify-wxml-setting": {
-      "type": "object",
-      "properties": {
-        "collapseWhitespace": {
-          "type": "boolean",
-          "description": "标签内所有连续空白符会被压缩成 1 个空格，换行的情况按 preserveLineBreaks 处理",
-          "default": true
-        },
-        "conservativeCollapse": {
-          "type": "boolean",
-          "description": "默认标签前后不保留空格，为 true 时标签前后会保留一个空格(当有时)",
-          "default": false
-        },
-        "preserveLineBreaks": {
-          "type": "boolean",
-          "description": "默认按 collapseWhitespace 处理，为 true 时所有换行都会被保留",
-          "default": false
-        }
-      },
-      "additionalProperties": false
     }
   },
   "properties": {
-    "miniprogramRoot": {
+    "appid": {
       "type": "string",
-      "description": "小程序源码的目录（需为相对路径）"
-    },
-    "qcloudRoot": {
-      "type": "string",
-      "description": "腾讯云项目的目录（需为相对路径）"
-    },
-    "pluginRoot": {
-      "type": "string",
-      "description": "插件项目的目录（需为相对路径）"
+      "description": "项目的 appid"
     },
     "cloudbaseRoot": {
       "type": "string",
       "description": "云开发代码根目录（需为相对路径）"
+    },
+    "cloudcontainerRoot": {
+      "type": "string",
+      "description": "云托管代码根目录（需为相对路径）"
     },
     "cloudfunctionRoot": {
       "type": "string",
@@ -252,10 +248,6 @@
     "cloudfunctionTemplateRoot": {
       "type": "string",
       "description": "云函数本地调试请求模板的根目录（需为相对路径）"
-    },
-    "cloudcontainerRoot": {
-      "type": "string",
-      "description": "云托管代码根目录（需为相对路径）"
     },
     "compileType": {
       "type": "string",
@@ -271,6 +263,112 @@
           "description": "当前为小程序插件项目"
         }
       ]
+    },
+    "debugOptions": {
+      "type": "object",
+      "description": "调试配置选项",
+      "properties": {
+        "hidedInDevtools": {
+          "type": "array",
+          "description": "配置调试时于调试器 Sources 面板隐藏源代码的文件",
+          "$ref": "#/definitions/array-of-match"
+        }
+      },
+      "additionalProperties": false
+    },
+    "description": {
+      "type": "string",
+      "description": "项目描述"
+    },
+    "editorSetting": {
+      "type": "object",
+      "description": "指定自动生成的文件的 tabIndent 和 tabSize",
+      "properties": {
+        "tabIndent": {
+          "type": "boolean",
+          "description": "是否使用 tab 缩进"
+        },
+        "tabSize": {
+          "type": "number",
+          "description": "tab 大小",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "libVersion": {
+      "type": "string",
+      "description": "基础库版本",
+      "oneOf": [
+        {
+          "pattern": "^[0-9]+.[0-9]+.[0-9]+$",
+          "description": "版本号"
+        },
+        {
+          "const": "latest",
+          "description": "最新的非灰度中的基础库"
+        },
+        {
+          "const": "trial",
+          "description": "最新的基础库"
+        },
+        {
+          "const": "widelyUsed",
+          "description": "使用比例最高的基础库"
+        }
+      ]
+    },
+    "miniprogramRoot": {
+      "type": "string",
+      "description": "小程序源码的目录（需为相对路径）"
+    },
+    "packOptions": {
+      "type": "object",
+      "description": "打包配置选项",
+      "properties": {
+        "include": {
+          "type": "array",
+          "description": "配置打包时需要强制带上的文件或者文件夹",
+          "$ref": "#/definitions/array-of-match"
+        },
+        "ignore": {
+          "type": "array",
+          "description": "配置打包时对符合指定规则的文件或文件夹进行忽略",
+          "$ref": "#/definitions/array-of-match"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pluginRoot": {
+      "type": "string",
+      "description": "插件项目的目录（需为相对路径）"
+    },
+    "projectname": {
+      "type": "string",
+      "description": "项目名字"
+    },
+    "qcloudRoot": {
+      "type": "string",
+      "description": "腾讯云项目的目录（需为相对路径）"
+    },
+    "scripts": {
+      "type": "object",
+      "description": "自定义预处理",
+      "properties": {
+        "beforeCompile": {
+          "type": "string",
+          "description": "编译前预处理命令"
+        },
+        "beforePreview": {
+          "type": "string",
+          "description": "预览前预处理命令"
+        },
+        "beforeUpload": {
+          "type": "string",
+          "description": "上传前预处理命令"
+        }
+      },
+      "additionalProperties": false
     },
     "setting": {
       "type": "object",
@@ -497,130 +595,6 @@
       },
       "additionalProperties": false
     },
-    "libVersion": {
-      "type": "string",
-      "description": "基础库版本",
-      "oneOf": [
-        {
-          "pattern": "^[0-9]+.[0-9]+.[0-9]+$",
-          "description": "版本号"
-        },
-        {
-          "const": "latest",
-          "description": "最新的非灰度中的基础库"
-        },
-        {
-          "const": "trial",
-          "description": "最新的基础库"
-        },
-        {
-          "const": "widelyUsed",
-          "description": "使用比例最高的基础库"
-        }
-      ]
-    },
-    "appid": {
-      "type": "string",
-      "description": "项目的 appid"
-    },
-    "projectname": {
-      "type": "string",
-      "description": "项目名字"
-    },
-    "packOptions": {
-      "type": "object",
-      "description": "打包配置选项",
-      "properties": {
-        "include": {
-          "type": "array",
-          "description": "配置打包时需要强制带上的文件或者文件夹",
-          "$ref": "#/definitions/array-of-match"
-        },
-        "ignore": {
-          "type": "array",
-          "description": "配置打包时对符合指定规则的文件或文件夹进行忽略",
-          "$ref": "#/definitions/array-of-match"
-        }
-      },
-      "additionalProperties": false
-    },
-    "debugOptions": {
-      "type": "object",
-      "description": "调试配置选项",
-      "properties": {
-        "hidedInDevtools": {
-          "type": "array",
-          "description": "配置调试时于调试器 Sources 面板隐藏源代码的文件",
-          "$ref": "#/definitions/array-of-match"
-        }
-      },
-      "additionalProperties": false
-    },
-    "watchOptions": {
-      "type": "object",
-      "description": "文件监听配置设置",
-      "properties": {
-        "ignore": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "scripts": {
-      "type": "object",
-      "description": "自定义预处理",
-      "properties": {
-        "beforeCompile": {
-          "type": "string",
-          "description": "编译前预处理命令"
-        },
-        "beforePreview": {
-          "type": "string",
-          "description": "预览前预处理命令"
-        },
-        "beforeUpload": {
-          "type": "string",
-          "description": "上传前预处理命令"
-        }
-      },
-      "additionalProperties": false
-    },
-    "staticServerOptions": {
-      "type": "object",
-      "description": "在微信开发者工具里开启一个本地静态资源服务器，用于托管项目静态资源，仅在小游戏项目中有效",
-      "properties": {
-        "servePath": {
-          "type": "string",
-          "description": "指向项目路径下的某个目录作为静态资源路径",
-          "minLength": 1
-        }
-      },
-      "additionalProperties": false
-    },
-    "description": {
-      "type": "string",
-      "description": "项目描述"
-    },
-    "editorSetting": {
-      "type": "object",
-      "description": "指定自动生成的文件的 tabIndent 和 tabSize",
-      "properties": {
-        "tabIndent": {
-          "type": "boolean",
-          "description": "是否使用 tab 缩进"
-        },
-        "tabSize": {
-          "type": "number",
-          "description": "tab 大小",
-          "minimum": 1
-        }
-      },
-      "additionalProperties": false
-    },
     "skeletonConfig": {
       "type": "object",
       "description": "骨架屏相关设置",
@@ -644,7 +618,33 @@
         }
       },
       "additionalProperties": false
+    },
+    "staticServerOptions": {
+      "type": "object",
+      "description": "在微信开发者工具里开启一个本地静态资源服务器，用于托管项目静态资源，仅在小游戏项目中有效",
+      "properties": {
+        "servePath": {
+          "type": "string",
+          "description": "指向项目路径下的某个目录作为静态资源路径",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "watchOptions": {
+      "type": "object",
+      "description": "文件监听配置设置",
+      "properties": {
+        "ignore": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
     }
   },
-  "required": ["appid", "projectname", "compileType"]
+  "required": ["appid", "compileType", "projectname"]
 }

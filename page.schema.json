@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
   "$id": "https://jsonschema.ntnyq.com/page.schema.json",
   "title": "JSON schema for weapp page config",
   "description": "Configuration Schema for weapp page config",
+  "type": "object",
   "definitions": {
     "hex-color": {
       "type": "string",
@@ -15,6 +15,114 @@
     }
   },
   "properties": {
+    "backgroundColor": {
+      "type": "string",
+      "description": "窗口的背景色",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "backgroundColorBottom": {
+      "type": "string",
+      "description": "底部窗口的背景色，仅 iOS 支持",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "backgroundColorContent": {
+      "type": "string",
+      "description": "页面容器背景色",
+      "default": "#ffffffff",
+      "$ref": "#/definitions/rgba-hex-color"
+    },
+    "backgroundColorTop": {
+      "type": "string",
+      "description": "顶部窗口的背景色，仅 iOS 支持",
+      "default": "#ffffff",
+      "$ref": "#/definitions/hex-color"
+    },
+    "backgroundTextStyle": {
+      "type": "string",
+      "description": "下拉 loading 的样式",
+      "default": "dark",
+      "oneOf": [
+        { "const": "dark", "description": "暗黑风格" },
+        { "const": "light", "description": "非暗黑风格" }
+      ]
+    },
+    "componentFramework": {
+      "type": "string",
+      "description": "组件框架",
+      "default": "exparser",
+      "oneOf": [
+        { "const": "exparser", "description": "默认组件框架" },
+        { "const": "glass-easel", "description": "新版微信小程序组件框架" }
+      ]
+    },
+    "disableScroll": {
+      "type": "boolean",
+      "description": "设置为 true 则页面整体不能上下滚动。",
+      "default": false
+    },
+    "enablePassiveEvent": {
+      "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
+      "default": false,
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "touchstart": {
+              "type": "boolean",
+              "description": "是否设置 touchstart 事件为 passive",
+              "default": false
+            },
+            "touchmove": {
+              "type": "boolean",
+              "description": "是否设置 touchmove 事件为 passive",
+              "default": false
+            },
+            "wheel": {
+              "type": "boolean",
+              "description": "是否设置 wheel 事件为 passive",
+              "default": false
+            }
+          }
+        }
+      ]
+    },
+    "enablePullDownRefresh": {
+      "type": "boolean",
+      "description": "是否开启全局的下拉刷新。",
+      "default": false
+    },
+    "handleWebviewPreload": {
+      "type": "string",
+      "description": "控制预加载下个页面的时机",
+      "default": "static",
+      "oneOf": [
+        { "const": "static", "description": "默认值" },
+        {
+          "const": "manual",
+          "description": "开发者通过调用 wx.preloadWebview 触发"
+        },
+        { "const": "auto", "description": "渲染线程空闲时进行预加载" }
+      ]
+    },
+    "homeButton": {
+      "type": "boolean",
+      "description": "在非首页、非页面栈最底层页面或非 tabBar 内页面中的导航栏展示 home 键",
+      "default": false
+    },
+    "initialRenderingCache": {
+      "type": "string",
+      "description": "页面初始渲染缓存配置",
+      "oneOf": [
+        { "const": "static", "description": "启用初始渲染缓存" },
+        { "const": "dynamic", "description": "“动态”初始渲染缓存" },
+        { "const": "capture", "description": "自定义渲染缓存时机" }
+      ]
+    },
     "navigationBarBackgroundColor": {
       "type": "string",
       "description": "导航栏背景颜色，如 #000000",
@@ -46,49 +154,6 @@
         }
       ]
     },
-    "homeButton": {
-      "type": "boolean",
-      "description": "在非首页、非页面栈最底层页面或非 tabBar 内页面中的导航栏展示 home 键",
-      "default": false
-    },
-    "backgroundColor": {
-      "type": "string",
-      "description": "窗口的背景色",
-      "default": "#ffffff",
-      "$ref": "#/definitions/hex-color"
-    },
-    "backgroundColorContent": {
-      "type": "string",
-      "description": "页面容器背景色",
-      "default": "#ffffffff",
-      "$ref": "#/definitions/rgba-hex-color"
-    },
-    "backgroundTextStyle": {
-      "type": "string",
-      "description": "下拉 loading 的样式",
-      "default": "dark",
-      "oneOf": [
-        { "const": "dark", "description": "暗黑风格" },
-        { "const": "light", "description": "非暗黑风格" }
-      ]
-    },
-    "backgroundColorTop": {
-      "type": "string",
-      "description": "顶部窗口的背景色，仅 iOS 支持",
-      "default": "#ffffff",
-      "$ref": "#/definitions/hex-color"
-    },
-    "backgroundColorBottom": {
-      "type": "string",
-      "description": "底部窗口的背景色，仅 iOS 支持",
-      "default": "#ffffff",
-      "$ref": "#/definitions/hex-color"
-    },
-    "enablePullDownRefresh": {
-      "type": "boolean",
-      "description": "是否开启全局的下拉刷新。",
-      "default": false
-    },
     "onReachBottomDistance": {
       "type": "number",
       "description": "页面上拉触底事件触发时距页面底部距离，单位为 px。",
@@ -102,124 +167,6 @@
         { "const": "auto", "description": "页面支持屏幕旋转" },
         { "const": "portrait", "description": "固定为竖屏显示" },
         { "const": "landscape", "description": "固定为横屏显示" }
-      ]
-    },
-    "disableScroll": {
-      "type": "boolean",
-      "description": "设置为 true 则页面整体不能上下滚动。",
-      "default": false
-    },
-    "usingComponents": {
-      "type": "object",
-      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
-      "patternProperties": {
-        "^[a-zA-Z0-9-_]+$": {
-          "type": "string",
-          "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
-          "pattern": "^(?!wx-).+"
-        }
-      },
-      "additionalProperties": false
-    },
-    "initialRenderingCache": {
-      "type": "string",
-      "description": "页面初始渲染缓存配置",
-      "oneOf": [
-        { "const": "static", "description": "启用初始渲染缓存" },
-        { "const": "dynamic", "description": "“动态”初始渲染缓存" },
-        { "const": "capture", "description": "自定义渲染缓存时机" }
-      ]
-    },
-    "style": {
-      "type": "string",
-      "description": "指定使用升级后的 weui 样式",
-      "default": "default",
-      "oneOf": [
-        { "const": "default", "description": "默认样式" },
-        { "const": "v2", "description": "启用新版的组件样式" }
-      ]
-    },
-    "singlePage": {
-      "type": "object",
-      "description": "单页模式相关配置",
-      "properties": {
-        "navigationBarFit": {
-          "type": "string",
-          "description": "导航栏与页面的相交状态。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
-          "oneOf": [
-            { "const": "float", "description": "导航栏浮在页面上，与页面相交" },
-            {
-              "const": "squeezed",
-              "description": "页面被导航栏挤压，与页面不相交"
-            }
-          ]
-        }
-      }
-    },
-    "restartStrategy": {
-      "type": "string",
-      "description": "重新启动策略配置",
-      "default": "homePage",
-      "oneOf": [
-        {
-          "const": "homePage",
-          "description": "如果从这个页面退出小程序，下次将从首页冷启动"
-        },
-        {
-          "const": "homePageAndLatestPage",
-          "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
-        }
-      ]
-    },
-    "handleWebviewPreload": {
-      "type": "string",
-      "description": "控制预加载下个页面的时机",
-      "default": "static",
-      "oneOf": [
-        { "const": "static", "description": "默认值" },
-        {
-          "const": "manual",
-          "description": "开发者通过调用 wx.preloadWebview 触发"
-        },
-        { "const": "auto", "description": "渲染线程空闲时进行预加载" }
-      ]
-    },
-    "visualEffectInBackground": {
-      "type": "string",
-      "description": "切入系统后台时，隐藏页面内容，保护用户隐私",
-      "default": "none",
-      "oneOf": [
-        { "const": "none", "description": "不隐藏页面内容" },
-        { "const": "hidden", "description": "隐藏页面内容" }
-      ]
-    },
-    "enablePassiveEvent": {
-      "description": "touch 相关事件监听的 passive 是否为 true, 以提高滚动性能",
-      "default": false,
-      "oneOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "touchstart": {
-              "type": "boolean",
-              "description": "是否设置 touchstart 事件为 passive",
-              "default": false
-            },
-            "touchmove": {
-              "type": "boolean",
-              "description": "是否设置 touchmove 事件为 passive",
-              "default": false
-            },
-            "wheel": {
-              "type": "boolean",
-              "description": "是否设置 wheel 事件为 passive",
-              "default": false
-            }
-          }
-        }
       ]
     },
     "renderer": {
@@ -247,13 +194,66 @@
         }
       }
     },
-    "componentFramework": {
+    "restartStrategy": {
       "type": "string",
-      "description": "组件框架",
-      "default": "exparser",
+      "description": "重新启动策略配置",
+      "default": "homePage",
       "oneOf": [
-        { "const": "exparser", "description": "默认组件框架" },
-        { "const": "glass-easel", "description": "新版微信小程序组件框架" }
+        {
+          "const": "homePage",
+          "description": "如果从这个页面退出小程序，下次将从首页冷启动"
+        },
+        {
+          "const": "homePageAndLatestPage",
+          "description": "如果从这个页面退出小程序，下次冷启动后立刻加载这个页面，页面的参数保持不变（不可用于 tab 页）"
+        }
+      ]
+    },
+    "singlePage": {
+      "type": "object",
+      "description": "单页模式相关配置",
+      "properties": {
+        "navigationBarFit": {
+          "type": "string",
+          "description": "导航栏与页面的相交状态。默认自动调整，若原页面是自定义导航栏，则为 float，否则为 squeezed",
+          "oneOf": [
+            { "const": "float", "description": "导航栏浮在页面上，与页面相交" },
+            {
+              "const": "squeezed",
+              "description": "页面被导航栏挤压，与页面不相交"
+            }
+          ]
+        }
+      }
+    },
+    "style": {
+      "type": "string",
+      "description": "指定使用升级后的 weui 样式",
+      "default": "default",
+      "oneOf": [
+        { "const": "default", "description": "默认样式" },
+        { "const": "v2", "description": "启用新版的组件样式" }
+      ]
+    },
+    "usingComponents": {
+      "type": "object",
+      "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
+      "patternProperties": {
+        "^[a-zA-Z0-9-_]+$": {
+          "type": "string",
+          "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
+          "pattern": "^(?!wx-).+"
+        }
+      },
+      "additionalProperties": false
+    },
+    "visualEffectInBackground": {
+      "type": "string",
+      "description": "切入系统后台时，隐藏页面内容，保护用户隐私",
+      "default": "none",
+      "oneOf": [
+        { "const": "none", "description": "不隐藏页面内容" },
+        { "const": "hidden", "description": "隐藏页面内容" }
       ]
     }
   }

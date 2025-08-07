@@ -1,16 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
   "$id": "https://jsonschema.ntnyq.com/component.schema.json",
   "title": "JSON schema for weapp component config",
   "description": "Configuration Schema for weapp component config",
+  "type": "object",
   "properties": {
+    "addGlobalClass": {
+      "type": "boolean",
+      "description": "是否添加全局样式类"
+    },
     "component": {
       "type": "boolean",
       "default": true,
       "const": true,
       "description": "自定义组件声明",
       "markdownDescription": "自定义组件声明\n\n[component](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)"
+    },
+    "styleIsolation": {
+      "type": "string",
+      "description": "定义样式隔离选项",
+      "default": "isolated",
+      "enum": ["isolated", "apply-shared", "shared"]
     },
     "usingComponents": {
       "type": "object",
@@ -26,19 +36,9 @@
       },
       "additionalProperties": false
     },
-    "styleIsolation": {
-      "type": "string",
-      "description": "定义样式隔离选项",
-      "default": "isolated",
-      "enum": ["isolated", "apply-shared", "shared"]
-    },
     "virtualHost": {
       "type": "boolean",
       "description": "是否启用虚拟化宿主"
-    },
-    "addGlobalClass": {
-      "type": "boolean",
-      "description": "是否添加全局样式类"
     }
   },
   "required": ["component"]

@@ -1,11 +1,10 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
 import Ajv from 'ajv'
 import type { Options as AjvOptions, Schema } from 'ajv'
 
-export const __dirname = fileURLToPath(new URL('.', import.meta.url))
-const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)
+const resolve = (...args: string[]): string =>
+  path.resolve(import.meta.dirname, '..', ...args)
 
 export async function loadSchema(name: string): Promise<Schema> {
   const schemaPath = resolve(`${name}.schema.json`)

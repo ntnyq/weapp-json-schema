@@ -2,7 +2,7 @@
   "name": "weapp-json-schema",
   "type": "module",
   "version": "0.5.1",
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.14.0",
   "description": "JSON schema for weapp",
   "keywords": [
     "json-schema",
@@ -35,25 +35,17 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^4.0.0-beta.9",
-    "@ntnyq/prettier-config": "^2.0.0",
-    "@types/node": "^22.13.9",
+    "@ntnyq/eslint-config": "^5.3.0",
+    "@ntnyq/prettier-config": "^3.0.1",
+    "@types/node": "^24.2.0",
     "ajv": "^8.17.1",
-    "bumpp": "^10.0.3",
-    "eslint": "^9.21.0",
+    "bumpp": "^10.2.2",
+    "eslint": "^9.32.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.7"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ],
-    "overrides": {
-      "esbuild": "^0.25.0"
-    }
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,md,yml,yaml,json}": "eslint --fix"
