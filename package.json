@@ -2,7 +2,7 @@
   "name": "weapp-json-schema",
   "type": "module",
   "version": "0.5.1",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.28.1",
   "description": "JSON schema for weapp",
   "keywords": [
     "json-schema",
@@ -29,23 +29,27 @@
     "*.schema.json"
   ],
   "scripts": {
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "lint": "eslint",
     "prepare": "husky",
-    "release": "bumpp && npm publish",
+    "release": "run-s release:check release:version",
+    "release:check": "run-p format:check lint test",
+    "release:version": "bumpp",
     "test": "vitest"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^5.3.0",
-    "@ntnyq/prettier-config": "^3.0.1",
-    "@types/node": "^24.2.0",
+    "@ntnyq/eslint-config": "^6.0.0-beta.2",
+    "@types/node": "^25.0.10",
     "ajv": "^8.17.1",
-    "bumpp": "^10.2.2",
-    "eslint": "^9.32.0",
+    "bumpp": "^10.4.0",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
-    "nano-staged": "^0.8.0",
-    "prettier": "^3.6.2",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "nano-staged": "^0.9.0",
+    "npm-run-all2": "^8.0.4",
+    "oxfmt": "^0.26.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,md,yml,yaml,json}": "eslint --fix"

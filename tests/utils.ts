@@ -18,7 +18,7 @@ export async function loadFixture(name: string) {
   return JSON.parse(fixture)
 }
 
-export async function createValidateFn(
+export async function createSchemaValidator(
   schemaName: string,
   options?: AjvOptions,
 ) {

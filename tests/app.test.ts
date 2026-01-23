@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest'
-import { createValidateFn, loadFixture } from './utils'
+import { createSchemaValidator, loadFixture } from './utils'
 
 it('app.schema.json', async () => {
-  const validate = await createValidateFn('app')
+  const validate = await createSchemaValidator('app')
   const fixture = await loadFixture('app.config')
 
   expect(validate(fixture)).toBeTruthy()
