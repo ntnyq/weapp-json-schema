@@ -1,5 +1,8 @@
 overrides:
-  esbuild: ^0.27.2
-onlyBuiltDependencies:
-  - esbuild
-  - unrs-resolver
+  esbuild: ^0.28.1
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+
+minimumReleaseAge: 0
