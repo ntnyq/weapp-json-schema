@@ -8,34 +8,34 @@
     "rules": {
       "type": "array",
       "description": "sitemap 索引规则列表",
-      "markdownDescription": "sitemap 索引规则列表\n\n[rules](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+      "markdownDescription": "sitemap 索引规则列表",
       "items": {
         "type": "object",
         "description": "sitemap 索引规则",
-        "markdownDescription": "sitemap 索引规则列表\n\n[rules](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+        "markdownDescription": "sitemap 索引规则列表",
         "properties": {
           "action": {
             "type": "string",
             "description": "命中该规则的页面是否能被索引",
-            "markdownDescription": "命中该规则的页面是否能被索引\n\n[rules.action](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+            "markdownDescription": "命中该规则的页面是否能被索引",
             "default": "allow",
             "oneOf": [
               {
                 "const": "allow",
                 "description": "命中该规则的页面允许被索引",
-                "markdownDescription": "命中该规则的页面允许被索引\n\n[rules.action](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)"
+                "markdownDescription": "命中该规则的页面允许被索引"
               },
               {
                 "const": "disallow",
                 "description": "命中该规则的页面禁止被索引",
-                "markdownDescription": "命中该规则的页面禁止被索引\n\n[rules.action](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)"
+                "markdownDescription": "命中该规则的页面禁止被索引"
               }
             ]
           },
           "page": {
             "type": "string",
             "description": "* 或页面的路径，* 表示所有页面，不能作为通配符使用",
-            "markdownDescription": "`*` 或页面的路径，`*` 表示所有页面，不能作为通配符使用\n\n[rules.page](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+            "markdownDescription": "`*` 或页面的路径，`*` 表示所有页面，不能作为通配符使用",
             "oneOf": [
               {
                 "type": "string",
@@ -52,7 +52,7 @@
           "params": {
             "type": "array",
             "description": "当 page 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）",
-            "markdownDescription": "当 `page` 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）\n\n[rules.params](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+            "markdownDescription": "当 `page` 字段指定的页面在被本规则匹配时可能使用的页面参数名称的列表（不含参数值）",
             "items": {
               "type": "string"
             }
@@ -60,7 +60,7 @@
           "matching": {
             "type": "string",
             "description": "当 page 字段指定的页面在被本规则匹配时，此参数说明 params 匹配方式",
-            "markdownDescription": "当 `page` 字段指定的页面在被本规则匹配时，此参数说明 `params` 匹配方式\n\n[rules.matching](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)",
+            "markdownDescription": "当 `page` 字段指定的页面在被本规则匹配时，此参数说明 `params` 匹配方式",
             "default": "inclusive",
             "oneOf": [
               {
@@ -88,7 +88,7 @@
           "priority": {
             "type": "number",
             "description": "优先级，值越大则规则越早被匹配，否则默认从上到下匹配",
-            "markdownDescription": "优先级，值越大则规则越早被匹配，否则默认从上到下匹配\n\n[rules.priority](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html#rules)"
+            "markdownDescription": "优先级，值越大则规则越早被匹配，否则默认从上到下匹配"
           }
         },
         "required": ["page"]

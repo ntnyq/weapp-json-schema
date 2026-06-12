@@ -781,7 +781,7 @@
       "type": "object",
       "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
       "patternProperties": {
-        "^[a-zA-Z0-9-_]+$": {
+        "^[a-z_-]+$": {
           "type": "string",
           "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
           "pattern": "^(?!wx-).+"
@@ -827,7 +827,7 @@
         "homeButton": {
           "type": "boolean",
           "description": "在非首页、非页面栈最底层页面或非 tabbar 内页面中的导航栏展示 home 键",
-          "default": true
+          "default": false
         },
         "backgroundColor": {
           "type": "string",

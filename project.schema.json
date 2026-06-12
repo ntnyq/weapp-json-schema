@@ -435,6 +435,10 @@
           "description": "是否检查安全域名和 TLS 版本",
           "default": false
         },
+        "checkSiteMap": {
+          "type": "boolean",
+          "description": "是否检查 sitemap 配置"
+        },
         "compileHotReLoad": {
           "type": "boolean",
           "description": "是否开启文件保存后自动热重载"

@@ -134,8 +134,8 @@
       "description": "导航栏标题颜色，仅支持 black / white",
       "default": "white",
       "oneOf": [
-        { "const": "dark", "description": "暗黑风格" },
-        { "const": "light", "description": "非暗黑风格" }
+        { "const": "white", "description": "白色" },
+        { "const": "black", "description": "黑色" }
       ]
     },
     "navigationBarTitleText": {
@@ -182,17 +182,49 @@
       "type": "object",
       "description": "小程序渲染后端的相关配置选项",
       "properties": {
-        "defaultDisplayBlock": {
-          "type": "boolean",
-          "description": "开启默认Block布局",
-          "default": false
-        },
-        "disableABTest": {
-          "type": "boolean",
-          "description": "关闭 Skyline AB 实验",
-          "default": false
+        "skyline": {
+          "type": "object",
+          "description": "Skyline 渲染引擎的相关配置项",
+          "properties": {
+            "defaultDisplayBlock": {
+              "type": "boolean",
+              "description": "开启默认 Block 布局",
+              "default": false
+            },
+            "defaultContentBox": {
+              "type": "boolean",
+              "description": "开启默认 ContentBox 盒模型",
+              "default": false
+            },
+            "tagNameStyleIsolation": {
+              "type": "string",
+              "description": "开启 tag 选择器全局匹配",
+              "oneOf": [
+                {
+                  "const": "legacy",
+                  "description": "不受样式隔离约束"
+                },
+                {
+                  "const": "isolated",
+                  "description": "遵循样式隔离机制"
+                }
+              ],
+              "default": "isolated"
+            },
+            "enableScrollViewAutoSize": {
+              "type": "boolean",
+              "description": "开启 scroll-view 自动撑开",
+              "default": false
+            },
+            "disableABTest": {
+              "type": "boolean",
+              "description": "关闭 Skyline AB 实验",
+              "default": false
+            }
+          }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "restartStrategy": {
       "type": "string",
@@ -239,7 +271,7 @@
       "type": "object",
       "description": "全局自定义组件配置，建议仅在此声明几乎所有页面都会用到的自定义组件。",
       "patternProperties": {
-        "^[a-zA-Z0-9-_]+$": {
+        "^[a-z_-]+$": {
           "type": "string",
           "description": "自定义组件，名称只能是小写字母、中划线和下划线的组合，组件所在根目录名不能以 wx- 为前缀",
           "pattern": "^(?!wx-).+"

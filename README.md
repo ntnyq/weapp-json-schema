@@ -105,12 +105,12 @@ Config in your `<component_name>.json`:
 - [微信官方文档 - 项目配置文件](https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html)
 - [微信官方文档 - 全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
 - [微信官方文档 - 页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
-- [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html)
+- [微信官方文档 - sitemap 配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/sitemap.html) 配置地址 404
 - [微信官方文档 - 自定义组件配置](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component)
 
 ## Updated At
 
-2025-03-04
+2026-06-12
 
 ## License
 
